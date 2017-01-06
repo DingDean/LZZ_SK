@@ -12,10 +12,22 @@ namespace skrobot {
             REQUIRE(target.IsShunZi(input, 4) == false);
         }
 
-        //SECTION("手牌长度大于等于５，但牌的点数间有间隔，返回false") {
-            //int input[5] = {0x21, 0x22, 0x23, 0x25, 0x26};
-            //REQUIRE(target.IsShunZi(input, 5) == false);
-        //}
+        SECTION("手牌长度大于等于５，但牌的点数间有间隔，返回false") {
+            int input[5] = {0x21, 0x22, 0x23, 0x25, 0x26};
+            REQUIRE(target.IsShunZi(input, 5) == false);
+        }
+
+        SECTION("手牌长度大于等于5，且牌都是连贯的，没有财神，返回true") {
+            int input[8] = {0x21, 0x22, 0x33, 0x34, 0x27, 0x26, 0x25, 0x18};
+            REQUIRE(target.IsShunZi(input, 8) == true);
+        }
+
+        SECTION("手牌长度大于等于5，虽然有n张牌不连贯，但有n张财神，返回true") {
+            int input[8] = {0x21, 0x22, 0x33, 0x34, 0x27, 0x4E, 0x25, 0x18};
+            REQUIRE(target.IsShunZi(input, 8) == true);
+            int input2[8] = {0x21, 0x22, 0x33, 0x4F, 0x27, 0x4E, 0x25, 0x18};
+            REQUIRE(target.IsShunZi(input2, 8) == true);
+        }
     }
     
 TEST_CASE("检查一手牌是不是对子", "[skrobot, static_analyser]") {
@@ -135,9 +147,18 @@ TEST_CASE("检查一手牌是否是三连", "[skrobot, static_analyser]") {
         REQUIRE(target.IsTripleLink(input, 9) == false);
     }
 
-    SECTION("数组的长度符合条件，全是对子，且点数连贯, 返回true") {
+    SECTION("数组的长度符合条件，全是三条，且点数连贯, 返回true") {
         int input[9] = {0x21, 0x31, 0x21, 0x12, 0x32, 0x32, 0x33, 0x33, 0x33};
         REQUIRE(target.IsTripleLink(input, 9) == true);
+    }
+
+    SECTION("数组的长度符合条件，有一张财神，在非财神牌中，有一个点数的牌成双，其余成三条, 返回true") {
+        int input[9] = {0x22, 0x22, 0x31,0x21,0x11, 0x33,0x23,0x33, 0x4E};
+        REQUIRE(target.IsTripleLink(input , 9) == true);
+    }
+    SECTION("数组的长度符合条件，有一张财神，在非财神牌中，有一个点数的牌成双，其余成三条, 返回true") {
+        int input[9] = {0x22, 0x22, 0x31,0x21,0x11, 0x33,0x23,0x33, 0x4E};
+        REQUIRE(target.IsTripleLink(input , 9) == true);
     }
 }
 

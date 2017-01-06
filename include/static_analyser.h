@@ -7,9 +7,6 @@ namespace skrobot {
 
 class StaticAnalyserC {
     public:
-        // 将手牌按点数分割
-        bool InfoHandDistribution(int *hand, int len);
-    public:
         // 判断一组手牌是否是顺子
         bool IsShunZi (int *hand, int len);
         // 判断一组手牌是否是对子
@@ -29,10 +26,11 @@ class StaticAnalyserC {
         // 判断一组手牌是否是排炸
         bool IsBombLink (int *hand, int len, int single_bomb_len);
     public:
-        // 判断一组手牌的点数是否连续
-        bool IsContinuous (std::vector<int> *distribution);
+        // 判断一组手牌为了成为连牌，还差几个点数的牌
+        int NumberOfGap (std::vector<int> *distribution);
         // 判断一副手牌需要多少司令来组成炸弹
         int TrumpNeededForBomb (std::vector<int> *distribution);
+        // 判断一副手牌需要多少司令来组成X连
         int TrumpNeededForXLink (std::vector<int> *distribution, int X);
     public:
         // 获取一组手牌中各种点数的扑克牌的数量

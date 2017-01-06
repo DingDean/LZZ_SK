@@ -2,11 +2,6 @@
 
 namespace skrobot {
 
-bool InfoHandDistribution(int *hand, int len)
-{
-    
-}
-
 bool StaticAnalyserC::IsShunZi (int *hand, int len)
 {
     if (len < 5 || len > kMaxHandLength)
@@ -14,7 +9,14 @@ bool StaticAnalyserC::IsShunZi (int *hand, int len)
 
     SortByValue(hand, len);
 
-    return true;
+    int trump_num = NumTrump(hand, len);
+    std::vector<int> distribution[2];
+    this->DistributionByValue(hand, len-trump_num, distribution);
+
+    int num_of_gap = this->NumberOfGap(distribution);
+    int num_trump_needed = this->TrumpNeededForXLink(distribution, 1);
+
+    return num_of_gap + num_trump_needed == trump_num;
 }
 
 bool StaticAnalyserC::IsDouble(int *hand, int len) 
@@ -54,9 +56,9 @@ bool StaticAnalyserC::IsDoubleLink(int *hand, int len)
     std::vector<int> distribution[2];
     this->DistributionByValue(hand, len-trump_num, distribution);
 
-    if (!this->IsContinuous(distribution))
-        return false;
-    return this->TrumpNeededForXLink(distribution, 2) == trump_num;
+    int num_of_gap = this->NumberOfGap(distribution);
+    int num_trump_needed = this->TrumpNeededForXLink(distribution, 2);
+    return num_of_gap + num_trump_needed == trump_num;
 }
 
 bool StaticAnalyserC::IsTripleLink(int *hand, int len)
@@ -71,9 +73,10 @@ bool StaticAnalyserC::IsTripleLink(int *hand, int len)
     std::vector<int> distribution[2];
     this->DistributionByValue(hand, len-trump_num, distribution);
 
-    if (!this->IsContinuous(distribution))
-        return false;
-    return this->TrumpNeededForXLink(distribution, 3) == trump_num;
+    int num_of_gap = this->NumberOfGap(distribution);
+    int num_trump_needed = this->TrumpNeededForXLink(distribution, 3);
+
+    return num_of_gap + num_trump_needed == trump_num;
 }
 
 bool StaticAnalyserC::IsBomb(int *hand, int len, bool is_sorted)
@@ -144,13 +147,14 @@ bool StaticAnalyserC::IsBombLink(int *hand, int len, int single_bomb_len)
 
     std::vector<int> distribution[2];
     this->DistributionByValue(hand, len-trump_num, distribution);
-    if (!this->IsContinuous(distribution))
-        return false;
 
-    return this->TrumpNeededForBomb(distribution) == trump_num;
+    int num_of_gap = this->NumberOfGap(distribution);
+    int num_trump_needed = this->TrumpNeededForBomb(distribution);
+
+    return num_of_gap + num_trump_needed == trump_num;
 }
 
-bool StaticAnalyserC::IsContinuous(std::vector<int> *distribution)
+int StaticAnalyserC::NumberOfGap(std::vector<int> *distribution)
 {
     std::vector<int> type_value = distribution[0];
     int max = type_value.size()-1;
@@ -159,9 +163,12 @@ bool StaticAnalyserC::IsContinuous(std::vector<int> *distribution)
     int gap = 0;
     for (int i=0; i<max; i++)
     {
-        gap += type_value[i+1] - type_value[i];
+        int diff = type_value[i+1] - type_value[i];
+        if (diff == 1)
+            continue;
+        gap += diff-1;
     }
-    return type_value.size() - gap == 1;
+    return gap;
 }
 
 int StaticAnalyserC::TrumpNeededForBomb(std::vector<int> *distribution)
