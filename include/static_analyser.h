@@ -28,6 +28,16 @@ class StaticAnalyserC {
         bool IsBombTW (int *hand, int len);
         // 判断一组手牌是否是排炸
         bool IsBombLink (int *hand, int len, int single_bomb_len);
+    public:
+        // 判断一组手牌的点数是否连续
+        bool IsContinuous (std::vector<int> *distribution);
+        // 判断一副手牌需要多少司令来组成炸弹
+        int TrumpNeededForBomb (std::vector<int> *distribution);
+        int TrumpNeededForXLink (std::vector<int> *distribution, int X);
+    public:
+        // 获取一组手牌中各种点数的扑克牌的数量
+        void DistributionByValue(int *hand, int len, std::vector<int> *distribution);
+
 };
 
 }// namespace skrobot

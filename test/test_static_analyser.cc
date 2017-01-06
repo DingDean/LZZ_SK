@@ -1,7 +1,9 @@
 #include "catch.hpp"
 #include "static_analyser.h"
+#include <vector>
 
 namespace skrobot {
+
     TEST_CASE("检查一手牌是不是顺子", "[StaticAnalyserC, IsShunZi]") {
         StaticAnalyserC target;
 
@@ -230,7 +232,7 @@ TEST_CASE("检查一副手牌是否是排炸", "[static_analyser, IsBombLinkj]")
         REQUIRE(target.IsBombLink(input, 9, 4) == false);
     }
 
-    SECTION("如果存在这一个点数的牌不成炸弹，返回false") {
+    SECTION("如果存在着一个点数的牌不成炸弹，返回false") {
         int input[8] = {0x21,0x21,0x21,0x21,0x22,0x22,0x22,0x23};
         REQUIRE(target.IsBombLink(input, 8, 4) == false);
     }
@@ -251,6 +253,21 @@ TEST_CASE("检查一副手牌是否是排炸", "[static_analyser, IsBombLinkj]")
         int input[8] = {0x21,0x21,0x21,0x4E,0x22,0x22,0x22,0x22};
         REQUIRE(target.IsBombLink(input, 8, 4) == true);
     }
+}
+
+TEST_CASE("获取一组手牌中各种点数的扑克牌的数量", "[static_analyser, DistributionByValue]") {
+    StaticAnalyserC target;
+
+    int input[12] = {0x21,0x21,0x21,0x22,0x22,0x22,0x22,0x23,0x23,0x23,0x23,0x23};
+    const int type[] = {1, 2, 3};
+    const int arr[] = {3, 4, 5};
+    std::vector<int> dist(arr, arr+3);
+    std::vector<int> type_value(type, type+3);
+    std::vector<int> result[2] = {type_value, dist};
+    std::vector<int> distribution[2];
+
+    target.DistributionByValue(input, 12, distribution);
+    REQUIRE(std::equal(distribution, distribution+2, result) == true);
 }
 
 }

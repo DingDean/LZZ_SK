@@ -22,21 +22,9 @@ namespace skrobot {
         return value <= 2 ? value+13 : value;
     }
 
-    bool SortByValueHelper(int a, int b)
-    {
-        return GetCardValue(a) <= GetCardValue(b);
-    }
-
     void SortByValue(int *hand, int len)
     {
-        std::sort(hand, hand+len, SortByValueHelper);
-    }
-
-    bool IsTrump(int card)
-    {
-        if (card == 0x4E || card == 0x4F)
-            return true;
-        return false;
+        std::sort(hand, hand+len, [](int a, int b) {return GetCardValue(a) <= GetCardValue(b);});
     }
 
     int NumTrump(int *hand, int len)

@@ -2,6 +2,7 @@
 #define SKROBOT_SKROBOT_COMMON_H_
 
 #include <algorithm>
+#include <vector>
 
 namespace skrobot {
 
@@ -24,14 +25,17 @@ const int kMaskValue            = 0x0F; //牌值掩码
 const int kMaxHandLength        = 27;   //玩家起始手牌数量
 const int kDeckLength           = 108;  //游戏起始扑克数量
 
+// 获得一张牌的实际点数
 int GetCardValue(int card);
+// 获得一张牌的花色
 int GetCardColor(int card);
+// 获得一张牌的逻辑点数
 int GetCardLogicValue(int card);
-
-bool SortByValueHelper(int a, int b);
+// 将一副手牌按照每张牌的点数升序排列
 void SortByValue(int *hand, int len);
-
+// 获得手牌中司令的数量
 int NumTrump (int *hand, int len);
+// 获得手牌中点数为value的扑克牌的数量
 int NumCardByValue (int *hand, int len, int value);
 
 } //namespace skrobot

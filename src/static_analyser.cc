@@ -49,26 +49,14 @@ bool StaticAnalyserC::IsDoubleLink(int *hand, int len)
 
     SortByValue(hand, len);
 
-    int temp;
+    int trump_num = NumTrump(hand, len);
 
-    for (int i = 0; i<len/2;i++)
-    {
-        int a = GetCardValue(hand[2*i]);
-        int b = GetCardValue(hand[2*i + 1]);
+    std::vector<int> distribution[2];
+    this->DistributionByValue(hand, len-trump_num, distribution);
 
-        if (a != b)
-            return false;
-
-        if (i == 0) 
-            temp = a;
-        else
-            if (a - temp != 1)
-                return false;
-            else
-                temp = a;
-    }
-
-    return true;
+    if (!this->IsContinuous(distribution))
+        return false;
+    return this->TrumpNeededForXLink(distribution, 2) == trump_num;
 }
 
 bool StaticAnalyserC::IsTripleLink(int *hand, int len)
@@ -78,31 +66,14 @@ bool StaticAnalyserC::IsTripleLink(int *hand, int len)
 
     SortByValue(hand, len);
 
-    int temp;
+    int trump_num = NumTrump(hand, len);
 
-    for (int i = 0; i<len/3;i++)
-    {
-        int a = GetCardValue(hand[3*i]);
-        int b = GetCardValue(hand[3*i + 1]);
-        int c = GetCardValue(hand[3*i + 2]);
+    std::vector<int> distribution[2];
+    this->DistributionByValue(hand, len-trump_num, distribution);
 
-        if (a != b || b != c)
-            return false;
-
-        if (i == 0) 
-        {
-            temp = a;
-        }
-        else
-        {
-            if (a - temp != 1)
-                return false;
-            else
-                temp = a;
-        }
-    }
-
-    return true;
+    if (!this->IsContinuous(distribution))
+        return false;
+    return this->TrumpNeededForXLink(distribution, 3) == trump_num;
 }
 
 bool StaticAnalyserC::IsBomb(int *hand, int len, bool is_sorted)
@@ -171,24 +142,80 @@ bool StaticAnalyserC::IsBombLink(int *hand, int len, int single_bomb_len)
 
     const int trump_num = NumTrump(hand, len);
 
-    int previous_value;
+    std::vector<int> distribution[2];
+    this->DistributionByValue(hand, len-trump_num, distribution);
+    if (!this->IsContinuous(distribution))
+        return false;
 
-    for (int i = 0; i<factor;i++)
+    return this->TrumpNeededForBomb(distribution) == trump_num;
+}
+
+bool StaticAnalyserC::IsContinuous(std::vector<int> *distribution)
+{
+    std::vector<int> type_value = distribution[0];
+    int max = type_value.size()-1;
+
+    // 判断点数是否连续
+    int gap = 0;
+    for (int i=0; i<max; i++)
     {
-        int new_hand[single_bomb_len] = {};
-        std::copy(hand + single_bomb_len*i, hand+single_bomb_len*(i+1), new_hand);
-        if (!this->IsBomb(new_hand, single_bomb_len, true))
-            return false;
-        int current_value = GetCardValue(hand[single_bomb_len*i]);
-        if (i == 0)
-            previous_value = current_value;
-        else
-            if (current_value - previous_value != 1)
-                return false;
-            else 
-                previous_value = current_value;
+        gap += type_value[i+1] - type_value[i];
     }
-    return true;
+    return type_value.size() - gap == 1;
+}
+
+int StaticAnalyserC::TrumpNeededForBomb(std::vector<int> *distribution)
+{
+    std::vector<int> type_num = distribution[1];
+
+    // 判断需要使用多少张司令
+    int size = type_num.size();
+    int max = type_num[size-1];
+    if (max < 4) 
+        return 9999;
+
+    int num_trump_needed = 0;
+
+    for (int i=0; i<size; i++)
+    {
+        int current_num = type_num[i];
+        num_trump_needed += max-current_num;
+    }
+    return num_trump_needed;
+}
+
+int StaticAnalyserC::TrumpNeededForXLink(std::vector<int> *distribution, int target)
+{
+    std::vector<int> type_num = distribution[1];
+    int size = type_num.size();
+    int trump_needed = 0;
+    for (int i=0; i<size; i++)
+    {
+        int num = type_num[i];
+        if (num > target)
+            return 9999;
+        trump_needed += target-num;
+    }
+    return trump_needed;
+}
+
+void StaticAnalyserC::DistributionByValue(int *hand, int len, std::vector<int> *distribution)
+{
+    SortByValue(hand, len);
+
+    std::vector<int> value_num;
+    std::vector<int> value_type;
+
+    for (int i = 0; i<len;)
+    {
+        int current_value = GetCardValue(hand[i]);
+        int current_num = NumCardByValue(hand, len, current_value);
+        value_num.push_back(current_num);
+        value_type.push_back(current_value);
+        i += current_num;
+    }
+    distribution[0] = value_type;
+    distribution[1] = value_num;
 }
 
 }
