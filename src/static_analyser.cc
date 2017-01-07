@@ -10,13 +10,18 @@ bool StaticAnalyserC::IsShunZi (int *hand, int len)
     SortByValue(hand, len);
 
     int trump_num = NumTrump(hand, len);
-    std::vector<int> distribution[2];
+    iVector distribution[2];
     this->DistributionByValue(hand, len-trump_num, distribution);
 
-    int num_of_gap = this->NumberOfGap(distribution);
-    int num_trump_needed = this->TrumpNeededForXLink(distribution, 1);
+    int num_of_gap = NumberOfGap(distribution);
+    int num_trump_needed = TrumpNeededForXLink(1, distribution);
 
-    return num_of_gap + num_trump_needed == trump_num;
+    if (num_of_gap + num_trump_needed == trump_num)
+    {
+        FillInDescriptor(kHandTypeShunzi, GetCardValue(hand[0]), 1, len);
+        return true;
+    }
+    return false;
 }
 
 bool StaticAnalyserC::IsDouble(int *hand, int len) 
@@ -27,9 +32,17 @@ bool StaticAnalyserC::IsDouble(int *hand, int len)
     SortByValue(hand, len);
 
     if (hand[1] == 0x4E || hand[1] == 0x4F) 
+    {
+        FillInDescriptor(kHandTypeDouble,GetCardValue(hand[0]), 2, 1);
         return true;
+    }
 
-    return GetCardValue(hand[0]) == GetCardValue(hand[1]);
+    if(GetCardValue(hand[0]) == GetCardValue(hand[1]))
+    {
+        FillInDescriptor(kHandTypeDouble,GetCardValue(hand[0]), 2, 1);
+        return true;
+    }
+    return false;
 }
 
 bool StaticAnalyserC::IsTriple(int *hand, int len)
@@ -40,8 +53,20 @@ bool StaticAnalyserC::IsTriple(int *hand, int len)
     SortByValue(hand, len);
 
     if (hand[len-1] != 0x4E && hand[len-1] != 0x4F)
-        return GetCardValue(hand[0]) == GetCardValue(hand[1]) && GetCardValue(hand[1]) == GetCardValue(hand[2]);
-    return this->IsDouble(hand, len -1);
+    {
+        if(GetCardValue(hand[0]) == GetCardValue(hand[1]) && GetCardValue(hand[1]) == GetCardValue(hand[2]))
+        {
+            FillInDescriptor(kHandTypeTriple, GetCardValue(hand[0]),3,1);
+            return true;
+        }
+        return false;
+    }
+    if(this->IsDouble(hand, len -1))
+    {
+        FillInDescriptor(kHandTypeTriple, GetCardValue(hand[0]),3,1);
+        return true;
+    }
+    return false;
 }
 
 bool StaticAnalyserC::IsDoubleLink(int *hand, int len)
@@ -53,12 +78,17 @@ bool StaticAnalyserC::IsDoubleLink(int *hand, int len)
 
     int trump_num = NumTrump(hand, len);
 
-    std::vector<int> distribution[2];
+    iVector distribution[2];
     this->DistributionByValue(hand, len-trump_num, distribution);
 
-    int num_of_gap = this->NumberOfGap(distribution);
-    int num_trump_needed = this->TrumpNeededForXLink(distribution, 2);
-    return num_of_gap + num_trump_needed == trump_num;
+    int num_of_gap = NumberOfGap(distribution);
+    int num_trump_needed = TrumpNeededForXLink(2, distribution);
+    if (num_of_gap + num_trump_needed == trump_num)
+    {
+        FillInDescriptor(kHandTypeDoubleLink, GetCardValue(hand[0]), 2, len/2);
+        return true;
+    }
+    return false;
 }
 
 bool StaticAnalyserC::IsTripleLink(int *hand, int len)
@@ -70,13 +100,18 @@ bool StaticAnalyserC::IsTripleLink(int *hand, int len)
 
     int trump_num = NumTrump(hand, len);
 
-    std::vector<int> distribution[2];
+    iVector distribution[2];
     this->DistributionByValue(hand, len-trump_num, distribution);
 
-    int num_of_gap = this->NumberOfGap(distribution);
-    int num_trump_needed = this->TrumpNeededForXLink(distribution, 3);
+    int num_of_gap = NumberOfGap(distribution);
+    int num_trump_needed = TrumpNeededForXLink(3, distribution);
 
-    return num_of_gap + num_trump_needed == trump_num;
+    if(num_of_gap + num_trump_needed == trump_num)
+    {
+        FillInDescriptor(kHandTypeTripleLink, GetCardValue(hand[0]), 3, len/3);
+        return true;
+    }
+    return false;
 }
 
 bool StaticAnalyserC::IsBomb(int *hand, int len, bool is_sorted)
@@ -97,9 +132,18 @@ bool StaticAnalyserC::IsBomb(int *hand, int len, bool is_sorted)
     if (hand[len -1] == 0x4E || hand[len - 1] == 0x4F) 
     {
         if ((len - 1) == 3)
-            return this->IsTriple(hand, len-1);
+        {
+            if(this->IsTriple(hand, len-1))
+            {
+                FillInDescriptor(kHandTypeBomb, GetCardValue(hand[0]), len, 1);
+                return true;
+            }
+            return false;
+        }
         else
+        {
             return this->IsBomb(hand, len-1, true);
+        }
     }
 
     for (int i = 0; i < len - 1; i++)
@@ -107,6 +151,7 @@ bool StaticAnalyserC::IsBomb(int *hand, int len, bool is_sorted)
         if (GetCardValue(hand[i]) != GetCardValue(hand[i+1]))
             return this->IsBombLink(hand, len, i+1);
     }
+    FillInDescriptor(kHandTypeBomb, GetCardValue(hand[0]), len, 1);
     return true;
 }
 
@@ -119,6 +164,7 @@ bool StaticAnalyserC::IsBomb3W(int *hand, int len)
         if (GetCardColor(hand[i]) != 0x40)
             return false;
     }
+    FillInDescriptor(kHandTypeBomb3W, GetCardValue(hand[0]), 3, 1);
     return true;
 }
 
@@ -131,6 +177,7 @@ bool StaticAnalyserC::IsBombTW(int *hand, int len)
         if (GetCardColor(hand[i]) != 0x40)
             return false;
     }
+    FillInDescriptor(kHandTypeBombTW, GetCardValue(hand[0]), 4, 1);
     return true;
 }
 
@@ -145,18 +192,62 @@ bool StaticAnalyserC::IsBombLink(int *hand, int len, int single_bomb_len)
 
     const int trump_num = NumTrump(hand, len);
 
-    std::vector<int> distribution[2];
+    iVector distribution[2];
     this->DistributionByValue(hand, len-trump_num, distribution);
 
-    int num_of_gap = this->NumberOfGap(distribution);
-    int num_trump_needed = this->TrumpNeededForBomb(distribution);
+    int num_of_gap = NumberOfGap(distribution);
+    int num_trump_needed = TrumpNeededForBomb(distribution);
 
-    return num_of_gap + num_trump_needed == trump_num;
+    if(num_of_gap + num_trump_needed == trump_num)
+    {
+        FillInDescriptor(kHandTypeBombLink, GetCardValue(hand[0]), single_bomb_len, factor);
+        return true;
+    }
+    return false;
 }
 
-int StaticAnalyserC::NumberOfGap(std::vector<int> *distribution)
+bool StaticAnalyserC::GenHandDescriptor (int *hand, int len)
 {
-    std::vector<int> type_value = distribution[0];
+    SortByValue(hand, len);
+
+    int possible_block_len = 1;
+    for (int i=0; i<len-1; i++)
+    {
+        int cur  = GetCardValue(hand[i]);
+        int next = GetCardValue(hand[i+1]);
+        if (next != cur)
+            break;
+        possible_block_len++;
+    }
+    
+    switch (possible_block_len) {
+        case 1:
+            return this->IsShunZi(hand, len);
+        case 2:
+            return (
+                    this->IsDouble(hand, len) ||
+                    this->IsDoubleLink(hand, len) ||
+                    this->IsBomb(hand, len ,true)
+                    );
+        case 3:
+            return (
+                    this->IsTriple(hand, len) ||
+                    this->IsTripleLink(hand, len)
+                    );
+        case 4:
+            return this->IsBomb(hand, len, true);
+        default:
+            return false;
+    }
+}
+
+int* StaticAnalyserC::GenUpperHand (int len)
+{
+}
+
+int StaticAnalyserC::NumberOfGap(iVector *distribution)
+{
+    iVector type_value = distribution[0];
     int max = type_value.size()-1;
 
     // 判断点数是否连续
@@ -171,9 +262,9 @@ int StaticAnalyserC::NumberOfGap(std::vector<int> *distribution)
     return gap;
 }
 
-int StaticAnalyserC::TrumpNeededForBomb(std::vector<int> *distribution)
+int StaticAnalyserC::TrumpNeededForBomb(iVector *distribution)
 {
-    std::vector<int> type_num = distribution[1];
+    iVector type_num = distribution[1];
 
     // 判断需要使用多少张司令
     int size = type_num.size();
@@ -191,9 +282,9 @@ int StaticAnalyserC::TrumpNeededForBomb(std::vector<int> *distribution)
     return num_trump_needed;
 }
 
-int StaticAnalyserC::TrumpNeededForXLink(std::vector<int> *distribution, int target)
+int StaticAnalyserC::TrumpNeededForXLink(int target, iVector *distribution)
 {
-    std::vector<int> type_num = distribution[1];
+    iVector type_num = distribution[1];
     int size = type_num.size();
     int trump_needed = 0;
     for (int i=0; i<size; i++)
@@ -206,12 +297,12 @@ int StaticAnalyserC::TrumpNeededForXLink(std::vector<int> *distribution, int tar
     return trump_needed;
 }
 
-void StaticAnalyserC::DistributionByValue(int *hand, int len, std::vector<int> *distribution)
+void StaticAnalyserC::DistributionByValue(int *hand, int len, iVector *distribution)
 {
     SortByValue(hand, len);
 
-    std::vector<int> value_num;
-    std::vector<int> value_type;
+    iVector value_num;
+    iVector value_type;
 
     for (int i = 0; i<len;)
     {
@@ -223,6 +314,14 @@ void StaticAnalyserC::DistributionByValue(int *hand, int len, std::vector<int> *
     }
     distribution[0] = value_type;
     distribution[1] = value_num;
+}
+
+void StaticAnalyserC::FillInDescriptor (int hand_type, int start_value, int block_len, int num_of_blocks)
+{
+    descriptor_.hand_type = hand_type;
+    descriptor_.start_value = start_value;
+    descriptor_.block_len = block_len;
+    descriptor_.num_of_blocks = num_of_blocks;
 }
 
 }

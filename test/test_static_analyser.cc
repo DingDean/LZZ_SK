@@ -28,6 +28,11 @@ namespace skrobot {
             int input2[8] = {0x21, 0x22, 0x33, 0x4F, 0x27, 0x4E, 0x25, 0x18};
             REQUIRE(target.IsShunZi(input2, 8) == true);
         }
+
+        SECTION("手牌长度大于等于5，虽然有n张牌不连贯，但只有n-1张财神，返回false") {
+            int input[5] = {0x21, 0x24, 0x25, 0x26, 0x4E};
+            REQUIRE(target.IsShunZi(input, 5) == false);
+        }
     }
     
 TEST_CASE("检查一手牌是不是对子", "[skrobot, static_analyser]") {
@@ -204,6 +209,11 @@ TEST_CASE("检查一副手牌是否是炸弹", "[skrobot, static analyser]") {
         int input[8] = {0x21,0x21,0x21,0x21,0x22,0x22,0x22,0x22};
         REQUIRE(target.IsBomb(input, 8, false) == true);
     }
+
+    SECTION("六张牌，一个三条，一个天王炸，返回true") {
+        int input[6] = {0x21,0x21,0x21,0x4F,0x4E,0x4E};
+        REQUIRE(target.IsBomb(input, 6, false) == true);
+    }
 }
 
 TEST_CASE("检查一副手牌是否是三王炸", "[static_analyser, IsBomb3W]") {
@@ -289,6 +299,102 @@ TEST_CASE("获取一组手牌中各种点数的扑克牌的数量", "[static_ana
 
     target.DistributionByValue(input, 12, distribution);
     REQUIRE(std::equal(distribution, distribution+2, result) == true);
+}
+
+TEST_CASE("获取一组手牌的描述符", "[static_analyer, GenHandDescriptor]") {
+    StaticAnalyserC target;
+
+    SECTION("可以识别出顺子") {
+        int input[8] = {0x23,0x24,0x25,0x26,0x27,0x28,0x29,0x2A};
+        REQUIRE(target.GenHandDescriptor(input, 8) == true);
+        HandDescriptor desc = target.GetDescriptor();
+        REQUIRE(desc.hand_type      == kHandTypeShunzi);
+        REQUIRE(desc.start_value    == 3);
+        REQUIRE(desc.block_len      == 1);
+        REQUIRE(desc.num_of_blocks  == 8);
+    }
+
+    SECTION("可以识别出对子") {
+        int input[2] = {0x22, 0x22};
+        REQUIRE(target.GenHandDescriptor(input, 2) == true);
+        HandDescriptor desc = target.GetDescriptor();
+        REQUIRE(desc.hand_type      == kHandTypeDouble);
+        REQUIRE(desc.start_value    == 2);
+        REQUIRE(desc.block_len      == 2);
+        REQUIRE(desc.num_of_blocks  == 1);
+    }
+
+    SECTION("可以识别出三条") {
+        int input[3] = {0x22, 0x22, 0x22};
+        REQUIRE(target.GenHandDescriptor(input, 3) == true);
+        HandDescriptor desc = target.GetDescriptor();
+        REQUIRE(desc.hand_type      == kHandTypeTriple);
+        REQUIRE(desc.start_value    == 2);
+        REQUIRE(desc.block_len      == 3);
+        REQUIRE(desc.num_of_blocks  == 1);
+    }
+
+    SECTION("可以识别出对连") {
+        int input[6] = {0x21,0x21,0x22,0x22,0x4E,0x23};
+        REQUIRE(target.GenHandDescriptor(input, 6) == true);
+        HandDescriptor desc = target.GetDescriptor();
+        REQUIRE(desc.hand_type      == kHandTypeDoubleLink);
+        REQUIRE(desc.start_value    == 1);
+        REQUIRE(desc.block_len      == 2);
+        REQUIRE(desc.num_of_blocks  == 3);
+    }
+
+    SECTION("可以识别出三连") {
+        int input[9] = {0x23,0x23,0x23,0x24,0x24,0x24,0x25,0x25,0x25};
+        REQUIRE(target.GenHandDescriptor(input, 9) == true);
+        HandDescriptor desc = target.GetDescriptor();
+        REQUIRE(desc.hand_type      == kHandTypeTripleLink);
+        REQUIRE(desc.start_value    == 3);
+        REQUIRE(desc.block_len      == 3);
+        REQUIRE(desc.num_of_blocks  == 3);
+    }
+
+    SECTION("可以识别炸弹") {
+        SECTION("可以识别三王炸") {
+            int input[3] = {0x4E, 0x4E, 0x4F};
+            REQUIRE(target.GenHandDescriptor(input, 3) == true);
+            HandDescriptor desc = target.GetDescriptor();
+            REQUIRE(desc.hand_type      == kHandTypeBomb3W);
+            REQUIRE(desc.start_value    == 0x0E);
+            REQUIRE(desc.block_len      == 3);
+            REQUIRE(desc.num_of_blocks  == 1);
+        }
+
+        SECTION("可以识别天王炸") {
+            int input[4] = {0x4E, 0x4E, 0x4F, 0x4F};
+            REQUIRE(target.GenHandDescriptor(input, 4) == true);
+            HandDescriptor desc = target.GetDescriptor();
+            REQUIRE(desc.hand_type      == kHandTypeBombTW);
+            REQUIRE(desc.start_value    == 0x0E);
+            REQUIRE(desc.block_len      == 4);
+            REQUIRE(desc.num_of_blocks  == 1);
+        }
+
+        SECTION("可以识别排炸") {
+            int input[8] = {0x21,0x21,0x21,0x21,0x22,0x22,0x22,0x22};
+            REQUIRE(target.GenHandDescriptor(input, 8) == true);
+            HandDescriptor desc = target.GetDescriptor();
+            REQUIRE(desc.hand_type      == kHandTypeBombLink);
+            REQUIRE(desc.start_value    == 1);
+            REQUIRE(desc.block_len      == 4);
+            REQUIRE(desc.num_of_blocks  == 2);
+        }
+    }
+}
+
+TEST_CASE("针对一组牌，从手牌中获取能盖过它的手牌组合", "[static_analyser, GenUpperHand]") {
+    StaticAnalyserC target;
+
+    SECTION("能正确提取出手牌中的顺子") {
+        int *input[5] = {0x23, 0x24, 0x25, 0x26, 0x27};
+        int *hand = {0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29};
+
+    }
 }
 
 }

@@ -5,6 +5,16 @@
 
 namespace skrobot {
 
+typedef std::vector<int> iVector;
+
+// 手牌描述符
+struct HandDescriptor {
+    int hand_type;
+    int start_value; //一副手牌中最小的点数
+    int block_len;   //一副手牌中相同点数的牌的数量
+    int num_of_blocks; // 手牌中拥有的不同点数的数量
+};
+
 class StaticAnalyserC {
     public:
         // 判断一组手牌是否是顺子
@@ -25,17 +35,28 @@ class StaticAnalyserC {
         bool IsBombTW (int *hand, int len);
         // 判断一组手牌是否是排炸
         bool IsBombLink (int *hand, int len, int single_bomb_len);
-    public:
-        // 判断一组手牌为了成为连牌，还差几个点数的牌
-        int NumberOfGap (std::vector<int> *distribution);
-        // 判断一副手牌需要多少司令来组成炸弹
-        int TrumpNeededForBomb (std::vector<int> *distribution);
-        // 判断一副手牌需要多少司令来组成X连
-        int TrumpNeededForXLink (std::vector<int> *distribution, int X);
-    public:
-        // 获取一组手牌中各种点数的扑克牌的数量
-        void DistributionByValue(int *hand, int len, std::vector<int> *distribution);
 
+        // 获得手牌描述符
+        bool GenHandDescriptor (int *hand, int len);
+        // 获得一首牌
+        int* GenUpperHand ();
+        // 获取一组手牌中各种点数的扑克牌的数量
+        void DistributionByValue(int *hand, int len, iVector *distribution);
+
+        // 判断一组手牌为了成为连牌，还差几个点数的牌
+        int NumberOfGap (iVector *distribution);
+        // 判断一副手牌需要多少司令来组成炸弹
+        int TrumpNeededForBomb (iVector *distribution);
+        // 判断一副手牌需要多少司令来组成X连
+        int TrumpNeededForXLink (int X, iVector *distribution);
+
+        /*Getter and Setter*/
+        inline HandDescriptor GetDescriptor () {return descriptor_;}
+    private:
+        HandDescriptor descriptor_;
+
+        // 填充手牌描述符
+        void FillInDescriptor (int hand_type, int start_value, int block_len, int num_of_blocks);
 };
 
 }// namespace skrobot
