@@ -387,14 +387,196 @@ TEST_CASE("获取一组手牌的描述符", "[static_analyer, GenHandDescriptor]
     }
 }
 
-TEST_CASE("针对一组牌，从手牌中获取能盖过它的手牌组合", "[static_analyser, GenUpperHand]") {
+TEST_CASE("针对一张牌X，从手牌中获得所有可以压制这张牌的散牌", "[static_analyser, OptionsSingleCard]") {
     StaticAnalyserC target;
 
-    SECTION("能正确提取出手牌中的顺子") {
-        int *input[5] = {0x23, 0x24, 0x25, 0x26, 0x27};
-        int *hand = {0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29};
+    SECTION("X为2，则只有司令可以压制它") {
+        SECTION("有司令") {
+            int hand[5] = {0x22, 0x21, 0x23, 0x4E, 0x4F};
+            iVector output;
+            int card = 0x22;
+            int result[2] = {0x4E, 0x4F};
+            iVector i_result(result, result+2);
+            REQUIRE(target.OptionsSingleCard(hand, 5, card, &output) == true);
+            REQUIRE(output.size() == 2);
+            REQUIRE(std::equal(output.begin(), output.end(), i_result.begin()) == true);
+        }
 
+        SECTION("没有司令") {
+            int hand[5] = {0x22, 0x21, 0x23, 0x24, 0x25};
+            iVector output;
+            int card = 0x22;
+            REQUIRE(target.OptionsSingleCard(hand, 5, card, &output) == true);
+            REQUIRE(output.size() == 0);
+        }
+    }
+
+    SECTION("X为A，只有司令和2可以压制它") {
+        SECTION("有司令，有2") {
+            int hand[5] = {0x22, 0x21, 0x23, 0x4E, 0x4F};
+            iVector output;
+            int card = 0x21;
+            int result[3] = {0x22, 0x4E, 0x4F};
+            iVector i_result(result, result+3);
+            REQUIRE(target.OptionsSingleCard(hand, 5, card, &output) == true);
+            REQUIRE(output.size() == 3);
+            REQUIRE(std::equal(output.begin(), output.end(), i_result.begin()) == true);
+        }
+
+        SECTION("有司令，没2") {
+            int hand[5] = {0x23, 0x21, 0x23, 0x4E, 0x4F};
+            iVector output;
+            int card = 0x21;
+            int result[2] = {0x4E, 0x4F};
+            iVector i_result(result, result+2);
+            REQUIRE(target.OptionsSingleCard(hand, 5, card, &output) == true);
+            REQUIRE(output.size() == 2);
+            REQUIRE(std::equal(output.begin(), output.end(), i_result.begin()) == true);
+        }
+
+        SECTION("没司令，有2") {
+            int hand[5] = {0x22, 0x21, 0x23, 0x25, 0x2D};
+            iVector output;
+            int card = 0x21;
+            int result[1] = {0x22};
+            iVector i_result(result, result+1);
+            REQUIRE(target.OptionsSingleCard(hand, 5, card, &output) == true);
+            REQUIRE(output.size() == 1);
+            REQUIRE(std::equal(output.begin(), output.end(), i_result.begin()) == true);
+        }
+
+        SECTION("没司令，没2") {
+            int hand[5] = {0x2A, 0x21, 0x23, 0x25, 0x2D};
+            iVector output;
+            int card = 0x21;
+
+            REQUIRE(target.OptionsSingleCard(hand, 5, card, &output) == true);
+            REQUIRE(output.size() == 0);
+        }
+    }
+
+    SECTION("副司令只能被正司令压制，正司令单张无敌") {
+
+        SECTION("X是副司令, 且有正司令") {
+            int hand[5] = {0x22, 0x21, 0x23, 0x4E, 0x4F};
+            iVector output;
+            int card = 0x4E;
+            int result[1] = {0x4F};
+            iVector i_result(result, result+1);
+            REQUIRE(target.OptionsSingleCard(hand, 5, card, &output) == true);
+            REQUIRE(output.size() == 1);
+            REQUIRE(std::equal(output.begin(), output.end(), i_result.begin()) == true);
+        }
+
+        SECTION("X是副司令, 但无正司令") {
+            int hand[5] = {0x22, 0x21, 0x23, 0x4E, 0x3A};
+            iVector output;
+            int card = 0x4E;
+
+            REQUIRE(target.OptionsSingleCard(hand, 5, card, &output) == true);
+            REQUIRE(output.size() == 0);
+        }
+
+        SECTION("X是正司令, 但无正司令") {
+            int hand[5] = {0x4F,0x4F,0x4F,0x4F,0x4F};
+            iVector output;
+            int card = 0x4F;
+
+            REQUIRE(target.OptionsSingleCard(hand, 5, card, &output) == true);
+            REQUIRE(output.size() == 0);
+        }
     }
 }
+
+TEST_CASE("针对一长度为X,点数全为Y的牌组, 从手牌中获得所有可以压制这牌组的手牌组合", "[static_analyser, OptionsXples]") {
+    StaticAnalyserC target;
+
+    SECTION("对2只有司令可以压制") {
+        SECTION("有对司令") {
+            int hand[5] = {0x23,0x23,0x23, 0x4E, 0x4E};
+            int start_value = 0x22;
+            int comb_len = 2;
+            iVector output;
+            int result[2] = {0x4E, 0x4E};
+            iVector i_result(result, result+2);
+            REQUIRE(target.OptionsXples(hand, 5, start_value, comb_len, &output) == true);
+            REQUIRE(output.size() == 2);
+            REQUIRE(std::equal(output.begin(), output.end(), i_result.begin()) == true);
+        }
+
+        SECTION("司令不够") {
+            int hand[5] = {0x23,0x23,0x23, 0x25, 0x25};
+            int start_value = 0x22;
+            int comb_len = 2;
+            iVector output;
+
+            REQUIRE(target.OptionsXples(hand, 5, start_value, comb_len, &output) == true);
+            REQUIRE(output.size() == 0);
+        }
+    }
+
+    SECTION("对A只有对2或者对司令可以压制") {
+        SECTION("有对司令，没有对2") {
+            int hand[5] = {0x23,0x23,0x23, 0x4E, 0x4E};
+            int start_value = 0x21;
+            int comb_len = 2;
+            iVector output;
+            int result[2] = {0x4E, 0x4E};
+            iVector i_result(result, result+2);
+            REQUIRE(target.OptionsXples(hand, 5, start_value, comb_len, &output) == true);
+            REQUIRE(output.size() == 2);
+            REQUIRE(std::equal(output.begin(), output.end(), i_result.begin()));
+        }
+
+        SECTION("有对司令，有对2") {
+            int hand[5] = {0x22,0x22,0x23, 0x4E, 0x4E};
+            int start_value = 0x21;
+            int comb_len = 2;
+            iVector output;
+            int result[6] = {0x4E, 0x4E, 0x22, 0x22, 0x22, 0x4E};
+            iVector i_result(result, result+6);
+            REQUIRE(target.OptionsXples(hand, 5, start_value, comb_len, &output) == true);
+            REQUIRE(output.size() == 6);
+            REQUIRE(std::is_permutation(output.begin(), output.end(), i_result.begin()) == true);
+        }
+    }
+
+    SECTION("三条2只有司令可以压制") {
+        SECTION("有对司令") {
+            int hand[6] = {0x23,0x23,0x23, 0x4F, 0x4E, 0x4E};
+            int start_value = 0x22;
+            int comb_len = 3;
+            iVector output;
+            int result[3] = {0x4E, 0x4E, 0x4F};
+            iVector i_result(result, result+3);
+            REQUIRE(target.OptionsXples(hand, 6, start_value, comb_len, &output) == true);
+            REQUIRE(output.size() == 3);
+            REQUIRE(std::equal(output.begin(), output.end(), i_result.begin()) == true);
+        }
+
+        //SECTION("司令不够") {
+            //int hand[5] = {0x23,0x23,0x23, 0x25, 0x25};
+            //int start_value = 0x22;
+            //int comb_len = 2;
+            //iVector output;
+
+            //REQUIRE(target.OptionsXples(hand, 5, start_value, comb_len, &output) == true);
+            //REQUIRE(output.size() == 0);
+        //}
+    }
+
+}
+
+//TEST_CASE("针对一组牌，从手牌中获取能盖过它的手牌组合", "[static_analyser, GenUpperHand]") {
+    //StaticAnalyserC target;
+
+    //SECTION("能正确提取出手牌中的顺子") {
+        //int input[5] = {0x23, 0x24, 0x25, 0x26, 0x27};
+        //int hand[7] = {0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29};
+        //int output[5] = {0x24, 0x25, 0x26, 0x27, 0x28};
+        //int result[5];
+        //target.GenUpperHand(input, 5, result);
+    //}
+//}
 
 }

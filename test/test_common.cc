@@ -16,6 +16,9 @@ TEST_CASE("获得扑克的花色", "[skrobot]") {
 TEST_CASE("获得扑克的逻辑点数", "[comon, GetCardLogicValue]") {
     REQUIRE(GetCardLogicValue(0x21) == 0x0E);
     REQUIRE(GetCardLogicValue(0x22) == 0x0F);
+    REQUIRE(GetCardLogicValue(0x23) == 0x03);
+    REQUIRE(GetCardLogicValue(0x4E) == 0x10);
+    REQUIRE(GetCardLogicValue(0x4F) == 0x11);
 }
 
 TEST_CASE("获取手牌中财神的数量", "[common, NumTrump]") {

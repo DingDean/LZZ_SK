@@ -6,6 +6,8 @@
 
 namespace skrobot {
 
+typedef std::vector<int> iVector;
+
 // 手牌类型
 const int kHandTypeError        = 0;    //错误
 const int kHandTypeSingle       = 1;    //单张
@@ -32,9 +34,13 @@ int GetCardColor(int card);
 // 获得一张牌的逻辑点数
 int GetCardLogicValue(int card);
 // 将一副手牌按照每张牌的点数升序排列
-void SortByValue(int *hand, int len);
+void SortByValue (int *hand, int len);
+// 将一副手牌按照每张牌的逻辑点数默认升序排列
+void SortByLogicValue (int *hand, int len, bool isAscending);
 // 获得手牌中司令的数量
 int NumTrump (int *hand, int len);
+// 获得手牌中司令的数量，带分布状况
+void NumTrump (int *hand, int len, iVector *trump_distr);
 // 获得手牌中点数为value的扑克牌的数量
 int NumCardByValue (int *hand, int len, int value);
 

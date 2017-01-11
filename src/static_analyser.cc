@@ -208,6 +208,11 @@ bool StaticAnalyserC::IsBombLink(int *hand, int len, int single_bomb_len)
 
 bool StaticAnalyserC::GenHandDescriptor (int *hand, int len)
 {
+    if(len == 1)
+    {
+        FillInDescriptor(kHandTypeSingle, GetCardValue(hand[0]), 1, 1);
+        return true;
+    }
     SortByValue(hand, len);
 
     int possible_block_len = 1;
@@ -241,8 +246,105 @@ bool StaticAnalyserC::GenHandDescriptor (int *hand, int len)
     }
 }
 
-int* StaticAnalyserC::GenUpperHand (int len)
+bool StaticAnalyserC::React (int *hand, int len, int *out_hand)
 {
+    if (!this->GenHandDescriptor(hand, len))
+        return false;
+    this->GenOptions(hand, len);
+}
+
+bool StaticAnalyserC::GenOptions (int *hand, int len)
+{
+}
+
+bool StaticAnalyserC::OptionsSingleCard (int *hand, int len, int input_card, iVector *output_options)
+{
+    int logic_value = GetCardLogicValue(input_card);
+    for (int i = 0; i<len; i++)
+    {
+        if (GetCardLogicValue(hand[i]) > logic_value)
+            output_options->push_back(hand[i]);
+    }
+    return true;
+}
+
+bool StaticAnalyserC::OptionsXples (int *hand, int len, int start_value, int comb_len, iVector *output_options)
+{
+    int logic_value = GetCardLogicValue(start_value);
+    SortByLogicValue(hand, len, false);
+    iVector trump_distr;
+
+    NumTrump(hand, len, &trump_distr);
+    int trump_total = trump_distr[0];
+    int vice_trump_num = trump_distr[1];
+    int trump_num = trump_distr[2];
+
+    for (int i = 0; i<len;)
+    {
+        if (GetCardLogicValue(hand[i]) <= logic_value)
+        {
+            i++;
+            continue;
+        }
+
+        int num = NumCardByValue(hand, len, GetCardValue(hand[i]));
+        int minimum = comb_len - trump_total > 1 ? comb_len - trump_total : 1;
+
+        if (hand[i] == 0x4E || hand[i] == 0x4F)
+        {
+            if (trump_total < comb_len)
+            {
+                i+=trump_total; 
+                continue;
+            }
+            if (vice_trump_num >= comb_len)
+            {
+                for (int m=0; m<comb_len; m++)
+                    output_options->push_back(0x4E);
+            }
+            if (trump_num >= comb_len)
+            {
+                for (int m=0; m<comb_len; m++)
+                    output_options->push_back(0x4F);
+            }
+            i+=trump_total;
+            continue;
+        }
+
+        if (num < minimum)
+        {
+            i += num; 
+            continue;
+        }
+
+        for (int min = minimum; min<comb_len + 1; min++)
+        {
+            int trump_needed = comb_len - min;
+            if (trump_needed == 0)
+            {
+                for (int z=0;z<min;z++)
+                    output_options->push_back(hand[i+z]);
+                continue;
+            }
+            if (vice_trump_num >= trump_needed)
+            {
+                for (int z=0;z<min;z++)
+                    output_options->push_back(hand[i+z]);
+                for (int m=0; m<trump_needed; m++)
+                    output_options->push_back(0x4E);
+            }
+            if (trump_num >= trump_needed)
+            {
+                for (int z=0;z<min;z++)
+                    output_options->push_back(hand[i+z]);
+                for (int m=0; m<trump_needed; m++)
+                    output_options->push_back(0x4F);
+            }
+            // TODO:正负司令混用
+        }
+        i+=num;
+    }
+    return true;
 }
 
 int StaticAnalyserC::NumberOfGap(iVector *distribution)

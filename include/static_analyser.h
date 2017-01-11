@@ -5,8 +5,6 @@
 
 namespace skrobot {
 
-typedef std::vector<int> iVector;
-
 // 手牌描述符
 struct HandDescriptor {
     int hand_type;
@@ -39,9 +37,16 @@ class StaticAnalyserC {
         // 获得手牌描述符
         bool GenHandDescriptor (int *hand, int len);
         // 获得一首牌
-        int* GenUpperHand ();
+        bool React (int *hand, int len, int *out_hand);
+        // 获得可能的出牌选择
+        bool GenOptions(int *hand, int len);
         // 获取一组手牌中各种点数的扑克牌的数量
         void DistributionByValue(int *hand, int len, iVector *distribution);
+
+        // 获得所有可以压制某张牌的散牌
+        bool OptionsSingleCard(int *hand, int len, int input_card, iVector *output_options);
+        // 获得所有可以压制某对子的手牌组合
+        bool OptionsXples(int *hand, int len, int start_value, int comb_len, iVector *output_options);
 
         // 判断一组手牌为了成为连牌，还差几个点数的牌
         int NumberOfGap (iVector *distribution);
