@@ -488,71 +488,39 @@ TEST_CASE("针对一张牌X，从手牌中获得所有可以压制这张牌的�
     }
 }
 
-TEST_CASE("针对一长度为X,点数全为Y的牌组, 从手牌中获得所有可以压制这牌组的手牌组合", "[static_analyser, OptionsXples]") {
+TEST_CASE("找出手牌中所有符合一定要求的炸弹", "[static_analyser, OptionsBombs]") {
     StaticAnalyserC target;
 
-    SECTION("对2只有司令可以压制") {
-        SECTION("有对司令") {
-            int hand[5] = {0x23,0x23,0x23, 0x4E, 0x4E};
-            int start_value = 0x22;
-            int comb_len = 2;
-            iVector output;
-            int result[2] = {0x4E, 0x4E};
-            iVector i_result(result, result+2);
-            REQUIRE(target.OptionsXples(hand, 5, start_value, comb_len, &output) == true);
-            REQUIRE(output.size() == 2);
-            REQUIRE(std::equal(output.begin(), output.end(), i_result.begin()) == true);
-        }
-
-        SECTION("司令不够") {
-            int hand[5] = {0x23,0x23,0x23, 0x25, 0x25};
-            int start_value = 0x22;
-            int comb_len = 2;
-            iVector output;
-
-            REQUIRE(target.OptionsXples(hand, 5, start_value, comb_len, &output) == true);
-            REQUIRE(output.size() == 0);
-        }
+    SECTION("能找出所有的普通炸弹") {
+        int hand[13] = {0x23,0x23,0x23,0x23,0x24,0x24,0x24,0x24,0x25,0x25,0x25,0x25,0x25};
+        iVector output_options;
+        target.OptionsBombs(hand, 13, 0x13, 4, 1, &output_options);
+        REQUIRE(output_options.size() == 11);
+        int result[11] = {4,0x24,0x24,0x24,0x24,5,0x25,0x25,0x25,0x25,0x25};
+        iVector i_result(result, result+11);
+        REQUIRE(std::equal(output_options.begin(), output_options.end(), i_result.begin()));
     }
 
-    SECTION("对A只有对2或者对司令可以压制") {
-        SECTION("有对司令，没有对2") {
-            int hand[5] = {0x23,0x23,0x23, 0x4E, 0x4E};
-            int start_value = 0x21;
-            int comb_len = 2;
-            iVector output;
-            int result[2] = {0x4E, 0x4E};
-            iVector i_result(result, result+2);
-            REQUIRE(target.OptionsXples(hand, 5, start_value, comb_len, &output) == true);
-            REQUIRE(output.size() == 2);
-            REQUIRE(std::equal(output.begin(), output.end(), i_result.begin()));
-        }
+    //SECTION("能找出带有司令的炸弹") {
+        //int hand[14] = {}
+    //}
+}
 
-        SECTION("有对司令，有对2") {
-            int hand[5] = {0x22,0x22,0x23, 0x4E, 0x4E};
-            int start_value = 0x21;
-            int comb_len = 2;
-            iVector output;
-            int result[6] = {0x4E, 0x4E, 0x22, 0x22, 0x22, 0x4E};
-            iVector i_result(result, result+6);
-            REQUIRE(target.OptionsXples(hand, 5, start_value, comb_len, &output) == true);
-            REQUIRE(output.size() == 6);
-            REQUIRE(std::is_permutation(output.begin(), output.end(), i_result.begin()) == true);
-        }
-    }
+//TEST_CASE("针对一长度为X,点数全为Y的牌组, 从手牌中获得所有可以压制这牌组的手牌组合", "[static_analyser, OptionsXples]") {
+    //StaticAnalyserC target;
 
-    SECTION("三条2只有司令可以压制") {
-        SECTION("有对司令") {
-            int hand[6] = {0x23,0x23,0x23, 0x4F, 0x4E, 0x4E};
-            int start_value = 0x22;
-            int comb_len = 3;
-            iVector output;
-            int result[3] = {0x4E, 0x4E, 0x4F};
-            iVector i_result(result, result+3);
-            REQUIRE(target.OptionsXples(hand, 6, start_value, comb_len, &output) == true);
-            REQUIRE(output.size() == 3);
-            REQUIRE(std::equal(output.begin(), output.end(), i_result.begin()) == true);
-        }
+    //SECTION("对2只有司令可以压制") {
+        //SECTION("有对司令") {
+            //int hand[5] = {0x23,0x23,0x23, 0x4E, 0x4E};
+            //int start_value = 0x22;
+            //int comb_len = 2;
+            //iVector output;
+            //int result[2] = {0x4E, 0x4E};
+            //iVector i_result(result, result+2);
+            //REQUIRE(target.OptionsXples(hand, 5, start_value, comb_len, &output) == true);
+            //REQUIRE(output.size() == 2);
+            //REQUIRE(std::equal(output.begin(), output.end(), i_result.begin()) == true);
+        //}
 
         //SECTION("司令不够") {
             //int hand[5] = {0x23,0x23,0x23, 0x25, 0x25};
@@ -563,9 +531,59 @@ TEST_CASE("针对一长度为X,点数全为Y的牌组, 从手牌中获得所有�
             //REQUIRE(target.OptionsXples(hand, 5, start_value, comb_len, &output) == true);
             //REQUIRE(output.size() == 0);
         //}
-    }
+    //}
 
-}
+    //SECTION("对A只有对2或者对司令可以压制") {
+        //SECTION("有对司令，没有对2") {
+            //int hand[5] = {0x23,0x23,0x23, 0x4E, 0x4E};
+            //int start_value = 0x21;
+            //int comb_len = 2;
+            //iVector output;
+            //int result[2] = {0x4E, 0x4E};
+            //iVector i_result(result, result+2);
+            //REQUIRE(target.OptionsXples(hand, 5, start_value, comb_len, &output) == true);
+            //REQUIRE(output.size() == 2);
+            //REQUIRE(std::equal(output.begin(), output.end(), i_result.begin()));
+        //}
+
+        //SECTION("有对司令，有对2") {
+            //int hand[5] = {0x22,0x22,0x23, 0x4E, 0x4E};
+            //int start_value = 0x21;
+            //int comb_len = 2;
+            //iVector output;
+            //int result[6] = {0x4E, 0x4E, 0x22, 0x22, 0x22, 0x4E};
+            //iVector i_result(result, result+6);
+            //REQUIRE(target.OptionsXples(hand, 5, start_value, comb_len, &output) == true);
+            //REQUIRE(output.size() == 6);
+            //REQUIRE(std::is_permutation(output.begin(), output.end(), i_result.begin()) == true);
+        //}
+    //}
+
+    //SECTION("三条2只有司令可以压制") {
+        //SECTION("有对司令") {
+            //int hand[6] = {0x23,0x23,0x23, 0x4F, 0x4E, 0x4E};
+            //int start_value = 0x22;
+            //int comb_len = 3;
+            //iVector output;
+            //int result[3] = {0x4E, 0x4E, 0x4F};
+            //iVector i_result(result, result+3);
+            //REQUIRE(target.OptionsXples(hand, 6, start_value, comb_len, &output) == true);
+            //REQUIRE(output.size() == 3);
+            //REQUIRE(std::equal(output.begin(), output.end(), i_result.begin()) == true);
+        //}
+
+        //SECTION("司令不够") {
+            //int hand[5] = {0x23,0x23,0x23, 0x25, 0x25};
+            //int start_value = 0x22;
+            //int comb_len = 2;
+            //iVector output;
+
+            //REQUIRE(target.OptionsXples(hand, 5, start_value, comb_len, &output) == true);
+            //REQUIRE(output.size() == 0);
+        //}
+    //}
+
+//}
 
 //TEST_CASE("针对一组牌，从手牌中获取能盖过它的手牌组合", "[static_analyser, GenUpperHand]") {
     //StaticAnalyserC target;

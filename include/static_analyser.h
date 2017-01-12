@@ -47,10 +47,12 @@ class StaticAnalyserC {
         bool OptionsSingleCard(int *hand, int len, int input_card, iVector *output_options);
         // 获得所有可以压制某对子的手牌组合
         bool OptionsXples(int *hand, int len, int start_value, int comb_len, iVector *output_options);
+        // 获得手牌中所有的炸弹
+        void OptionsBombs (int *hand, int len, int min_value, int min_len, int strategy, iVector *output_options);
 
         // 判断一组手牌为了成为连牌，还差几个点数的牌
         int NumberOfGap (iVector *distribution);
-        // 判断一副手牌需要多少司令来组成炸弹
+        // 判断一副手牌需要多少司令来组成炸弹,只寻找普通炸弹而不是排炸
         int TrumpNeededForBomb (iVector *distribution);
         // 判断一副手牌需要多少司令来组成X连
         int TrumpNeededForXLink (int X, iVector *distribution);

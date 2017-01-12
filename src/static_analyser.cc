@@ -347,6 +347,30 @@ bool StaticAnalyserC::OptionsXples (int *hand, int len, int start_value, int com
     return true;
 }
 
+void StaticAnalyserC::OptionsBombs (int *hand, int len, int start_value, int block_len, int num_of_blocks, iVector *output_options)
+{
+    SortByLogicValue(hand, len, true);
+
+    int min_logic_value = GetCardLogicValue(start_value);
+    for (int i = 0; i<len;)
+    {
+        int num = NumCardByValue(hand, len, GetCardValue(hand[i]));
+        int current_logic_value = GetCardLogicValue(hand[i]);
+        if (current_logic_value <= min_logic_value)
+        {
+            i+=num;
+            continue;
+        }
+        if (num >= block_len)
+        {
+            output_options->push_back(num);
+            for (int j=0; j<num; j++)
+                output_options->push_back(hand[i+j]);
+        }
+        i+=num;
+    }
+}
+
 int StaticAnalyserC::NumberOfGap(iVector *distribution)
 {
     iVector type_value = distribution[0];
