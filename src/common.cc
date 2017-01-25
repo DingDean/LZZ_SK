@@ -43,18 +43,18 @@ namespace skrobot {
         return std::count_if(hand, hand+len, [](int card) {return card == 0x4E || card == 0x4F;});
     }
 
-    void NumTrump(int *hand, int len, iVector *trump_distr)
+    void NumTrump(int *hand, int len, TrumpDescriptor *trump_desc)
     {
         int vice_trump_num = std::count(hand, hand+len, 0x4E);
         int trump_num = std::count(hand, hand+len, 0x4F);
         int total_num = vice_trump_num + trump_num;
 
-        trump_distr->push_back(total_num);
+        trump_desc->totoal_num = total_num;
 
         if (total_num == 0)
             return;
-        trump_distr->push_back(vice_trump_num);
-        trump_distr->push_back(trump_num);
+        trump_desc->vice_trump_num = vice_trump_num;
+        trump_desc->trump_num = trump_num;
         return;
     }
 

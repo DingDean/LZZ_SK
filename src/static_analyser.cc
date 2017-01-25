@@ -272,12 +272,12 @@ bool StaticAnalyserC::OptionsXples (int *hand, int len, int start_value, int com
 {
     int logic_value = GetCardLogicValue(start_value);
     SortByLogicValue(hand, len, false);
-    iVector trump_distr;
+    TrumpDescriptor trump_distr;
 
     NumTrump(hand, len, &trump_distr);
-    int trump_total = trump_distr[0];
-    int vice_trump_num = trump_distr[1];
-    int trump_num = trump_distr[2];
+    int trump_total = trump_distr.total_num;
+    int vice_trump_num = trump_distr.vice_trump_num;
+    int trump_num = trump_distr.trump_num;
 
     for (int i = 0; i<len;)
     {
@@ -350,6 +350,8 @@ bool StaticAnalyserC::OptionsXples (int *hand, int len, int start_value, int com
 void StaticAnalyserC::OptionsBombs (int *hand, int len, int start_value, int block_len, int num_of_blocks, iVector *output_options)
 {
     SortByLogicValue(hand, len, true);
+    TrumpDescriptor trump_desc;
+    NumTrump(hand, len, &trump_desc);
 
     int min_logic_value = GetCardLogicValue(start_value);
     for (int i = 0; i<len;)
@@ -358,8 +360,10 @@ void StaticAnalyserC::OptionsBombs (int *hand, int len, int start_value, int blo
         int current_logic_value = GetCardLogicValue(hand[i]);
         if (current_logic_value <= min_logic_value)
         {
-            i+=num;
-            continue;
+            int possible_max_block_len = trump_desc.total_num + num;
+            if (possible_max_block_len <= block_len)
+                i+=num;continue;
+            this->MakeBombsWithTrump(hand, len, i, num, block_len+1, possible_max_block_len, trump_desc, output_options);
         }
         if (num >= block_len)
         {
@@ -368,6 +372,69 @@ void StaticAnalyserC::OptionsBombs (int *hand, int len, int start_value, int blo
                 output_options->push_back(hand[i+j]);
         }
         i+=num;
+    }
+}
+
+void StaticAnalyserC::MakeBombsWithTrump(
+        int *hand,
+        int len,
+        int base_value_index, 
+        int base_num, 
+        int min_block_len, 
+        int max_block_len, 
+        TrumpDescriptor trump_desc, 
+        iVector *output_options)
+{
+    for (int target_len=min_block_len; target_len<=max_block_len; target_len++)
+    {
+        int trump_needed = target_len - base_num;
+        if (trump_desc.total_num < trump_needed)
+            continue;
+        for (int i=0;i<3;i++)
+        {
+            switch (i) {
+                case 0:
+                    if (trump_desc.vice_trump_num < trump_needed)
+                        continue;
+                    output_options->push_back(target_len);
+                    for (int num=0;num<trump_needed;num++)
+                        output_options->push_back(0x4E);
+                    break;
+                case 1:
+                    if (trump_desc.trump_num < trump_needed)
+                        continue;
+                    output_options->push_back(target_len);
+                    for (int num=0;num<trump_needed;num++)
+                        output_options->push_back(0x4F);
+                    break;
+                case 2:
+                    if (trump_needed < 2)
+                        continue;
+                    if (trump_desc.vice_trump_num > 0 && trump_desc.trump_num > 0)
+                    {
+                        output_options->push_back(target_len);
+                        output_options->push_back(0x4E);
+                        output_options->push_back(0x4F);
+                        if (trump_needed -2 == 1)
+                        {
+                            if (trump_desc.vice_trump_num -1 > 0)
+                                output_options->push_back(0x4E);
+                            else
+                                output_options->push_back(0x4F);
+                        }
+                        else if (trump_needed - 2 == 2)
+                        {
+                            output_options->push_back(0x4E);
+                            output_options->push_back(0x4F);
+                        }
+                    }
+                    break;
+                default:
+                    continue;
+            }
+            for (int z=0; z<base_num; z++)
+                output_options->push_back(hand[base_value_index + z]);
+        }
     }
 }
 

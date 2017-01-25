@@ -8,6 +8,14 @@ namespace skrobot {
 
 typedef std::vector<int> iVector;
 
+// 司令分布描述符
+struct TrumpDescriptor {
+    int total_num;     // 司令总数
+    int vice_trump_num; // 副司令数量
+    int trump_num;      // 正司令数量
+};
+
+
 // 手牌类型
 const int kHandTypeError        = 0;    //错误
 const int kHandTypeSingle       = 1;    //单张
@@ -40,7 +48,7 @@ void SortByLogicValue (int *hand, int len, bool isAscending);
 // 获得手牌中司令的数量
 int NumTrump (int *hand, int len);
 // 获得手牌中司令的数量，带分布状况
-void NumTrump (int *hand, int len, iVector *trump_distr);
+void NumTrump (int *hand, int len, TrumpDescriptor *trump_desc);
 // 获得手牌中点数为value的扑克牌的数量
 int NumCardByValue (int *hand, int len, int value);
 

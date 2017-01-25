@@ -501,9 +501,29 @@ TEST_CASE("找出手牌中所有符合一定要求的炸弹", "[static_analyser,
         REQUIRE(std::equal(output_options.begin(), output_options.end(), i_result.begin()));
     }
 
-    //SECTION("能找出带有司令的炸弹") {
-        //int hand[14] = {}
-    //}
+    SECTION("能找出带有司令的炸弹") {
+        int hand[14] = {0x25,0x25,0x25,0x24,0x24,0x24,0x24,0x4E,0x4F};
+        iVector output_options;
+        target.OptionsBombs(hand, 14, 0x13, 4, 1, &output_options);
+        REQUIRE(output_options.size() == 40);
+        int result[40] = {4,0x25,0x25,0x25,0x4E,4,0x25,0x25,0x25,0x4F,5,0x25,0x25,0x25,0x4E,0x4F,4,0x24,0x24,0x24,0x24,5,0x24,0x24,0x24,0x24,0x4E,5,0x24,0x24,0x24,0x24,0x4F,6,0x24,0x24,0x24,0x24,0x4E,0x4F};
+        iVector i_result(result, result+40);
+        REQUIRE(std::equal(output_options.begin(), output_options.end(), i_result.begin()));
+    }
+}
+
+TEST_CASE("用司令来凑普通炸弹", "[static_analyser, MakeBombsWithTrump]") {
+    StaticAnalyserC target;
+
+    SECTION("") {
+        int hand[6] = {0x24,0x24,0x24,0x4E,0x4F,0x4E};
+        iVector output_options;
+        TrumpDescriptor trump_desc;
+        NumTrump(hand, 6, &trump_desc);
+
+        target.MakeBombsWithTrump(hand, 6, 0, 3, 4, 6, trump_desc, &output_options);
+        REQUIRE(output_options.size() == 29);
+    }
 }
 
 //TEST_CASE("针对一长度为X,点数全为Y的牌组, 从手牌中获得所有可以压制这牌组的手牌组合", "[static_analyser, OptionsXples]") {

@@ -49,6 +49,8 @@ class StaticAnalyserC {
         bool OptionsXples(int *hand, int len, int start_value, int comb_len, iVector *output_options);
         // 获得手牌中所有的炸弹
         void OptionsBombs (int *hand, int len, int min_value, int min_len, int strategy, iVector *output_options);
+        // 用司令来凑炸弹
+        void MakeBombsWithTrump (int *hand, int len, int base_value_index, int base_num, int min_block_len, int max_block_len, TrumpDescriptor trump_desc, iVector *output_options);
 
         // 判断一组手牌为了成为连牌，还差几个点数的牌
         int NumberOfGap (iVector *distribution);
