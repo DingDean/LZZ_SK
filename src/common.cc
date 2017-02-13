@@ -49,7 +49,7 @@ namespace skrobot {
         int trump_num = std::count(hand, hand+len, 0x4F);
         int total_num = vice_trump_num + trump_num;
 
-        trump_desc->totoal_num = total_num;
+        trump_desc->total_num = total_num;
 
         if (total_num == 0)
             return;
@@ -61,6 +61,10 @@ namespace skrobot {
     int NumCardByValue(int *hand, int len, int value)
     {
         return std::count_if(hand, hand+len, [value](int card) {return GetCardValue(card) == value;});
+    }
+    int NumCardByLogic (int *hand, int len, int value)
+    {
+        return std::count_if(hand, hand+len, [value](int card) {return GetCardLogicValue(card) == value;});
     }
 } //namespace skrobot
 

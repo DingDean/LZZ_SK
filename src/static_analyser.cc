@@ -7,11 +7,11 @@ bool StaticAnalyserC::IsShunZi (int *hand, int len)
     if (len < 5 || len > kMaxHandLength)
         return false;
 
-    SortByValue(hand, len);
+    SortByLogicValue(hand, len, true);
 
     int trump_num = NumTrump(hand, len);
     iVector distribution[2];
-    this->DistributionByValue(hand, len-trump_num, distribution);
+    this->DistributionByLogicValue(hand, len-trump_num, distribution);
 
     int num_of_gap = NumberOfGap(distribution);
     int num_trump_needed = TrumpNeededForXLink(1, distribution);
@@ -29,17 +29,17 @@ bool StaticAnalyserC::IsDouble(int *hand, int len)
     if (len != 2)
         return false;
 
-    SortByValue(hand, len);
+    SortByLogicValue(hand, len, true);
 
     if (hand[1] == 0x4E || hand[1] == 0x4F) 
     {
-        FillInDescriptor(kHandTypeDouble,GetCardValue(hand[0]), 2, 1);
+        FillInDescriptor(kHandTypeDouble,hand[0], 2, 1);
         return true;
     }
 
     if(GetCardValue(hand[0]) == GetCardValue(hand[1]))
     {
-        FillInDescriptor(kHandTypeDouble,GetCardValue(hand[0]), 2, 1);
+        FillInDescriptor(kHandTypeDouble,hand[0], 2, 1);
         return true;
     }
     return false;
@@ -50,20 +50,20 @@ bool StaticAnalyserC::IsTriple(int *hand, int len)
     if (len != 3)
         return false;
 
-    SortByValue(hand, len);
+    SortByLogicValue(hand, len, true);
 
     if (hand[len-1] != 0x4E && hand[len-1] != 0x4F)
     {
         if(GetCardValue(hand[0]) == GetCardValue(hand[1]) && GetCardValue(hand[1]) == GetCardValue(hand[2]))
         {
-            FillInDescriptor(kHandTypeTriple, GetCardValue(hand[0]),3,1);
+            FillInDescriptor(kHandTypeTriple, hand[0],3,1);
             return true;
         }
         return false;
     }
     if(this->IsDouble(hand, len -1))
     {
-        FillInDescriptor(kHandTypeTriple, GetCardValue(hand[0]),3,1);
+        FillInDescriptor(kHandTypeTriple, hand[0],3,1);
         return true;
     }
     return false;
@@ -74,18 +74,18 @@ bool StaticAnalyserC::IsDoubleLink(int *hand, int len)
     if (len < 6 || len % 2 != 0 || len > kMaxHandLength)
         return false;
 
-    SortByValue(hand, len);
+    SortByLogicValue(hand, len, true);
 
     int trump_num = NumTrump(hand, len);
 
     iVector distribution[2];
-    this->DistributionByValue(hand, len-trump_num, distribution);
+    this->DistributionByLogicValue(hand, len-trump_num, distribution);
 
     int num_of_gap = NumberOfGap(distribution);
     int num_trump_needed = TrumpNeededForXLink(2, distribution);
     if (num_of_gap + num_trump_needed == trump_num)
     {
-        FillInDescriptor(kHandTypeDoubleLink, GetCardValue(hand[0]), 2, len/2);
+        FillInDescriptor(kHandTypeDoubleLink, hand[0], 2, len/2);
         return true;
     }
     return false;
@@ -96,7 +96,7 @@ bool StaticAnalyserC::IsTripleLink(int *hand, int len)
     if (len < 9 || len % 3 != 0 || len > kMaxHandLength)
         return false;
 
-    SortByValue(hand, len);
+    SortByLogicValue(hand, len, true);
 
     int trump_num = NumTrump(hand, len);
 
@@ -108,7 +108,7 @@ bool StaticAnalyserC::IsTripleLink(int *hand, int len)
 
     if(num_of_gap + num_trump_needed == trump_num)
     {
-        FillInDescriptor(kHandTypeTripleLink, GetCardValue(hand[0]), 3, len/3);
+        FillInDescriptor(kHandTypeTripleLink, hand[0], 3, len/3);
         return true;
     }
     return false;
@@ -127,7 +127,7 @@ bool StaticAnalyserC::IsBomb(int *hand, int len, bool is_sorted)
             return true;
 
     if (!is_sorted) 
-        SortByValue(hand, len);
+        SortByLogicValue(hand, len, true);
 
     if (hand[len -1] == 0x4E || hand[len - 1] == 0x4F) 
     {
@@ -135,7 +135,7 @@ bool StaticAnalyserC::IsBomb(int *hand, int len, bool is_sorted)
         {
             if(this->IsTriple(hand, len-1))
             {
-                FillInDescriptor(kHandTypeBomb, GetCardValue(hand[0]), len, 1);
+                FillInDescriptor(kHandTypeBomb, hand[0], len, 1);
                 return true;
             }
             return false;
@@ -151,7 +151,7 @@ bool StaticAnalyserC::IsBomb(int *hand, int len, bool is_sorted)
         if (GetCardValue(hand[i]) != GetCardValue(hand[i+1]))
             return this->IsBombLink(hand, len, i+1);
     }
-    FillInDescriptor(kHandTypeBomb, GetCardValue(hand[0]), len, 1);
+    FillInDescriptor(kHandTypeBomb, hand[0], len, 1);
     return true;
 }
 
@@ -161,10 +161,10 @@ bool StaticAnalyserC::IsBomb3W(int *hand, int len)
         return false;
     for (int i = 0; i < 3; i++)
     {
-        if (GetCardColor(hand[i]) != 0x40)
+        if (GetCardColor(hand[i]) != kTrumpColor)
             return false;
     }
-    FillInDescriptor(kHandTypeBomb3W, GetCardValue(hand[0]), 3, 1);
+    FillInDescriptor(kHandTypeBomb3W, hand[0], 3, 1);
     return true;
 }
 
@@ -174,10 +174,10 @@ bool StaticAnalyserC::IsBombTW(int *hand, int len)
         return false;
     for (int i = 0; i<4; i++)
     {
-        if (GetCardColor(hand[i]) != 0x40)
+        if (GetCardColor(hand[i]) != kTrumpColor)
             return false;
     }
-    FillInDescriptor(kHandTypeBombTW, GetCardValue(hand[0]), 4, 1);
+    FillInDescriptor(kHandTypeBombTW, hand[0], 4, 1);
     return true;
 }
 
@@ -188,19 +188,19 @@ bool StaticAnalyserC::IsBombLink(int *hand, int len, int single_bomb_len)
 
     const int factor = len / single_bomb_len;
 
-    SortByValue(hand, len);
+    SortByLogicValue(hand, len, true);
 
     const int trump_num = NumTrump(hand, len);
 
     iVector distribution[2];
-    this->DistributionByValue(hand, len-trump_num, distribution);
+    this->DistributionByLogicValue(hand, len-trump_num, distribution);
 
     int num_of_gap = NumberOfGap(distribution);
     int num_trump_needed = TrumpNeededForBomb(distribution);
 
     if(num_of_gap + num_trump_needed == trump_num)
     {
-        FillInDescriptor(kHandTypeBombLink, GetCardValue(hand[0]), single_bomb_len, factor);
+        FillInDescriptor(kHandTypeBombLink, hand[0], single_bomb_len, factor);
         return true;
     }
     return false;
@@ -268,83 +268,156 @@ bool StaticAnalyserC::OptionsSingleCard (int *hand, int len, int input_card, iVe
     return true;
 }
 
-bool StaticAnalyserC::OptionsXples (int *hand, int len, int start_value, int comb_len, iVector *output_options)
+// TODO: 测试
+bool StaticAnalyserC::OptionsXples (int *hand, int len, int combo_card, int combo_len, iVector *output_options)
 {
-    int logic_value = GetCardLogicValue(start_value);
-    SortByLogicValue(hand, len, false);
-    TrumpDescriptor trump_distr;
+    int combo_logic_value = GetCardLogicValue(combo_card);
+    TrumpDescriptor trump_desc;
+    NumTrump(hand, len, &trump_desc);
 
-    NumTrump(hand, len, &trump_distr);
-    int trump_total = trump_distr.total_num;
-    int vice_trump_num = trump_distr.vice_trump_num;
-    int trump_num = trump_distr.trump_num;
-
-    for (int i = 0; i<len;)
+    for (int i = 0; i< len;)
     {
-        if (GetCardLogicValue(hand[i]) <= logic_value)
+        int current_logic_value = GetCardLogicValue(hand[i]);
+        int current_card_num    = NumCardByValue(hand, len, GetCardValue(hand[i]));
+        if (current_logic_value <= combo_logic_value)
         {
-            i++;
+            i+=current_card_num;
             continue;
         }
 
-        int num = NumCardByValue(hand, len, GetCardValue(hand[i]));
-        int minimum = comb_len - trump_total > 1 ? comb_len - trump_total : 1;
-
-        if (hand[i] == 0x4E || hand[i] == 0x4F)
+        if (current_card_num + trump_desc.total_num < combo_len)
         {
-            if (trump_total < comb_len)
+            i+=current_card_num;
+            continue;
+        }
+
+        for (int base_len=1; base_len<=current_card_num;base_len++)
+        {
+            if (base_len >= combo_len)
             {
-                i+=trump_total; 
+                output_options->push_back(combo_len);
+                for (int j=0;j<combo_len;j++)
+                    output_options->push_back(hand[i]);
+                break;
+            }
+            int trump_needed = combo_len -base_len ;
+            if (trump_desc.total_num < trump_needed)
                 continue;
-            }
-            if (vice_trump_num >= comb_len)
-            {
-                for (int m=0; m<comb_len; m++)
-                    output_options->push_back(0x4E);
-            }
-            if (trump_num >= comb_len)
-            {
-                for (int m=0; m<comb_len; m++)
-                    output_options->push_back(0x4F);
-            }
-            i+=trump_total;
+            // TODO:使用MakeXplesWithTrump
+            this->MakeXplesWithTrump(hand[i], base_len, trump_needed, trump_desc, output_options);
+        }
+    }
+}
+
+bool StaticAnalyserC::OptionsXLinks (int *hand, int len, int link_start_value, int link_block_len, int link_total_len, iVector * output_options)
+{
+    int target_start_logic_value = GetCardLogicValue(link_start_value);
+    SortByLogicValue(hand, len, false);
+    for (int i=0; i<len;)
+    {
+        int current_logic_value = GetCardLogicValue(hand[i]);
+        int current_value_num   = NumCardByValue(hand, len, GetCardValue(hand[i]));
+        if (current_logic_value <= target_start_logic_value)
+        {
+            i += current_value_num;
             continue;
         }
 
-        if (num < minimum)
+        // TODO:2017-02-10
+        // 完成寻找连牌的逻辑
+        bool is_good = true;
+        int diff_card_needed = link_total_len/link_block_len;
+        int previous_logic_value = current_logic_value;
+        for (int j=current_value_num; j<diff_card_needed;)
         {
-            i += num; 
-            continue;
+            int next_logic_value = GetCardLogicValue(hand[j]);
+            int next_value_num   = NumCardByValue(hand, len, GetCardValue(hand[j]));
+            if (next_logic_value - current_logic_value != 1)
+            {
+                is_good = false;
+                break;
+            }
+            previous_logic_value = next_logic_value;
+            j+=next_value_num;
         }
+    }
+}
 
-        for (int min = minimum; min<comb_len + 1; min++)
-        {
-            int trump_needed = comb_len - min;
-            if (trump_needed == 0)
+ //TODO: 需要三个和四个财神的情况还未写完
+bool StaticAnalyserC::MakeXplesWithTrump (int base, int base_len, int trump_needed, TrumpDescriptor trump_desc, iVector *output_options)
+{
+    switch (trump_needed) {
+        case 0:
+            output_options->push_back(base_len);
+            for (int j=0;j<base_len;j++)
+                output_options->push_back(base);
+            break;
+        case 1:
+            if (trump_desc.vice_trump_num > 0)
             {
-                for (int z=0;z<min;z++)
-                    output_options->push_back(hand[i+z]);
-                continue;
+                output_options->push_back(base_len);
+                for (int j=0;j<base_len;j++)
+                    output_options->push_back(base);
+                output_options->push_back(0x4E);
             }
-            if (vice_trump_num >= trump_needed)
+            if (trump_desc.trump_num > 0)
             {
-                for (int z=0;z<min;z++)
-                    output_options->push_back(hand[i+z]);
-                for (int m=0; m<trump_needed; m++)
-                    output_options->push_back(0x4E);
+                output_options->push_back(base_len);
+                for (int j=0;j<base_len;j++)
+                    output_options->push_back(base);
+                output_options->push_back(0x4F);
             }
-            if (trump_num >= trump_needed)
+            break;
+        case 2:
+            if (trump_desc.vice_trump_num > 1)
             {
-                for (int z=0;z<min;z++)
-                    output_options->push_back(hand[i+z]);
-                for (int m=0; m<trump_needed; m++)
-                    output_options->push_back(0x4F);
+                output_options->push_back(base_len);
+                for (int j=0;j<base_len;j++)
+                    output_options->push_back(base);
+                output_options->push_back(0x4E);
+                output_options->push_back(0x4E);
             }
-            // TODO:正负司令混用
-        }
-        i+=num;
+            if (trump_desc.trump_num > 1)
+            {
+                output_options->push_back(base_len);
+                for (int j=0;j<base_len;j++)
+                    output_options->push_back(base);
+                output_options->push_back(0x4F);
+                output_options->push_back(0x4F);
+            }
+            if (trump_desc.vice_trump_num > 0 && trump_desc.trump_num > 0)
+            {
+                output_options->push_back(base_len);
+                for (int j=0;j<base_len;j++)
+                    output_options->push_back(base);
+                output_options->push_back(0x4F);
+                output_options->push_back(0x4E);
+            }
+            break;
+        case 3:
+            // TODO:
+            break;
+        case 4:
+            // TODO:
+            break;
+        default:
+            break;
     }
     return true;
+}
+
+bool StaticAnalyserC::FindCardsByValue(int *hand, int len, int card_value, int num)
+{
+    int occurence = 0;
+    for (int i=0; i<len; i++)
+    {
+        int current_value = hand[i];
+        if (current_value == card_value)
+            occurence++;
+        if (occurence == num)
+            return true;
+    }
+    return false;
 }
 
 void StaticAnalyserC::OptionsBombs (int *hand, int len, int start_value, int block_len, int num_of_blocks, iVector *output_options)
@@ -509,10 +582,29 @@ void StaticAnalyserC::DistributionByValue(int *hand, int len, iVector *distribut
     distribution[1] = value_num;
 }
 
+void StaticAnalyserC::DistributionByLogicValue (int *hand, int len, iVector *distribution)
+{
+    SortByLogicValue(hand, len, true);
+
+    iVector value_num;
+    iVector value_type;
+
+    for (int i = 0; i<len;)
+    {
+        int current_value = GetCardLogicValue(hand[i]);
+        int current_num = NumCardByLogic(hand, len, current_value);
+        value_num.push_back(current_num);
+        value_type.push_back(current_value);
+        i += current_num;
+    }
+    distribution[0] = value_type;
+    distribution[1] = value_num;
+}
+
 void StaticAnalyserC::FillInDescriptor (int hand_type, int start_value, int block_len, int num_of_blocks)
 {
     descriptor_.hand_type = hand_type;
-    descriptor_.start_value = start_value;
+    descriptor_.start_value = GetCardLogicValue(start_value);
     descriptor_.block_len = block_len;
     descriptor_.num_of_blocks = num_of_blocks;
 }

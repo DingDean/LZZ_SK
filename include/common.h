@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <vector>
+#include <map>
 
 namespace skrobot {
 
@@ -15,7 +16,7 @@ struct TrumpDescriptor {
     int trump_num;      // 正司令数量
 };
 
-
+const int kTrumpColor           = 0x40; //司令的花色
 // 手牌类型
 const int kHandTypeError        = 0;    //错误
 const int kHandTypeSingle       = 1;    //单张
@@ -51,6 +52,7 @@ int NumTrump (int *hand, int len);
 void NumTrump (int *hand, int len, TrumpDescriptor *trump_desc);
 // 获得手牌中点数为value的扑克牌的数量
 int NumCardByValue (int *hand, int len, int value);
+int NumCardByLogic (int *hand, int len, int value);
 
 } //namespace skrobot
 

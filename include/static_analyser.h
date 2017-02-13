@@ -36,19 +36,31 @@ class StaticAnalyserC {
 
         // 获得手牌描述符
         bool GenHandDescriptor (int *hand, int len);
+        // TODO:逻辑＋测试
         // 获得一首牌
         bool React (int *hand, int len, int *out_hand);
+        // TODO:逻辑＋测试
         // 获得可能的出牌选择
-        bool GenOptions(int *hand, int len);
+        bool GenOptions (int *hand, int len);
         // 获取一组手牌中各种点数的扑克牌的数量
-        void DistributionByValue(int *hand, int len, iVector *distribution);
+        void DistributionByValue (int *hand, int len, iVector *distribution);
+        // 获取一组手牌中各种逻辑点数的扑克牌的数量
+        void DistributionByLogicValue (int *hand, int len, iVector *distribution);
 
         // 获得所有可以压制某张牌的散牌
-        bool OptionsSingleCard(int *hand, int len, int input_card, iVector *output_options);
+        bool OptionsSingleCard (int *hand, int len, int input_card, iVector *output_options);
+        // TODO:逻辑＋测试
         // 获得所有可以压制某对子的手牌组合
-        bool OptionsXples(int *hand, int len, int start_value, int comb_len, iVector *output_options);
+        bool OptionsXples (int *hand, int len, int combo_card, int combo_len, iVector *output_options);
+        // TODO:逻辑＋测试
+        // 获得所有可以压制某连的手牌组合
+        bool OptionsXLinks (int *hand, int len, int link_start_value, int link_block_len, int link_total_len, iVector *output_options);
+        // TODO:逻辑+测试
+        bool MakeXplesWithTrump (int base, int base_len, int trump_needed, TrumpDescriptor trump_desc, iVector *output_options);
+        // TODO:逻辑+测试
         // 获得手牌中所有的炸弹
         void OptionsBombs (int *hand, int len, int min_value, int min_len, int strategy, iVector *output_options);
+        // TODO:逻辑+测试
         // 用司令来凑炸弹
         void MakeBombsWithTrump (int *hand, int len, int base_value_index, int base_num, int min_block_len, int max_block_len, TrumpDescriptor trump_desc, iVector *output_options);
 
@@ -58,6 +70,8 @@ class StaticAnalyserC {
         int TrumpNeededForBomb (iVector *distribution);
         // 判断一副手牌需要多少司令来组成X连
         int TrumpNeededForXLink (int X, iVector *distribution);
+        // 在手牌中寻找特定的几张牌
+        bool FindCardsByValue(int *hand, int len, int card_value, int num);
 
         /*Getter and Setter*/
         inline HandDescriptor GetDescriptor () {return descriptor_;}

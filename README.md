@@ -20,6 +20,14 @@
 * 依照Google C++ Style Guide
 * 使用Catch来进行单元测试
 
+## 架构
+StaticAnalyserC :: 对自己手牌的静态分析
+StateManagerC   :: 记录所有人的出牌记录以及其手牌的可能类型
+
+### StateManagerC 
+所有人的出牌记录
+手牌中可能会有什么牌
+
 
 
 

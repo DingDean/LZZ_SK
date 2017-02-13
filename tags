@@ -1,0 +1,670 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AND_THEN	include/catch.hpp	10526;"	d
+AND_WHEN	include/catch.hpp	10524;"	d
+AllOf	include/catch.hpp	/^            AllOf( AllOf const& other ) : m_matchers( other.m_matchers ) {}$/;"	f	class:Catch::Matchers::Impl::Generic::AllOf
+AllOf	include/catch.hpp	/^            AllOf() {}$/;"	f	class:Catch::Matchers::Impl::Generic::AllOf
+AllOf	include/catch.hpp	/^        class AllOf : public MatcherImpl<AllOf<ExpressionT>, ExpressionT> {$/;"	c	namespace:Catch::Matchers::Impl::Generic
+AllOf	include/catch.hpp	/^    inline Impl::Generic::AllOf<ExpressionT> AllOf( Impl::Matcher<ExpressionT> const& m1,$/;"	f	namespace:Catch::Matchers
+AnyOf	include/catch.hpp	/^            AnyOf( AnyOf const& other ) : m_matchers( other.m_matchers ) {}$/;"	f	class:Catch::Matchers::Impl::Generic::AnyOf
+AnyOf	include/catch.hpp	/^            AnyOf() {}$/;"	f	class:Catch::Matchers::Impl::Generic::AnyOf
+AnyOf	include/catch.hpp	/^        class AnyOf : public MatcherImpl<AnyOf<ExpressionT>, ExpressionT> {$/;"	c	namespace:Catch::Matchers::Impl::Generic
+AnyOf	include/catch.hpp	/^    inline Impl::Generic::AnyOf<ExpressionT> AnyOf( Impl::Matcher<ExpressionT> const& m1,$/;"	f	namespace:Catch::Matchers
+AssertionInfo	include/catch.hpp	/^        AssertionInfo() {}$/;"	f	struct:Catch::AssertionInfo
+AssertionInfo	include/catch.hpp	/^    struct AssertionInfo$/;"	s	namespace:Catch
+AssertionResult	include/catch.hpp	/^    class AssertionResult {$/;"	c	namespace:Catch
+AssertionResultData	include/catch.hpp	/^        AssertionResultData() : resultType( ResultWas::Unknown ) {}$/;"	f	struct:Catch::AssertionResultData
+AssertionResultData	include/catch.hpp	/^    struct AssertionResultData$/;"	s	namespace:Catch
+AutoReg	include/catch.hpp	/^    AutoReg$/;"	f	struct:Catch::AutoReg
+AutoReg	include/catch.hpp	/^struct AutoReg {$/;"	s	namespace:Catch
+BIN	makefile	/^BIN=bin$/;"	m
+BorgType	include/catch.hpp	/^    struct BorgType {$/;"	s	namespace:Catch::Detail
+CATCH_AND_THEN	include/catch.hpp	10453;"	d
+CATCH_AND_WHEN	include/catch.hpp	10451;"	d
+CATCH_ANON_TEST_CASE	include/catch.hpp	10434;"	d
+CATCH_ARC_ENABLED	include/catch.hpp	1515;"	d
+CATCH_ARC_STRONG	include/catch.hpp	1533;"	d
+CATCH_ARC_STRONG	include/catch.hpp	1549;"	d
+CATCH_AUTO_PTR	include/catch.hpp	313;"	d
+CATCH_AUTO_PTR	include/catch.hpp	315;"	d
+CATCH_BREAK_INTO_DEBUGGER	include/catch.hpp	2022;"	d
+CATCH_BREAK_INTO_DEBUGGER	include/catch.hpp	2040;"	d
+CATCH_CAPTURE	include/catch.hpp	10414;"	d
+CATCH_CHECK	include/catch.hpp	10397;"	d
+CATCH_CHECKED_ELSE	include/catch.hpp	10400;"	d
+CATCH_CHECKED_IF	include/catch.hpp	10399;"	d
+CATCH_CHECK_FALSE	include/catch.hpp	10398;"	d
+CATCH_CHECK_NOFAIL	include/catch.hpp	10401;"	d
+CATCH_CHECK_NOTHROW	include/catch.hpp	10406;"	d
+CATCH_CHECK_THROWS	include/catch.hpp	10403;"	d
+CATCH_CHECK_THROWS_AS	include/catch.hpp	10404;"	d
+CATCH_CHECK_THROWS_WITH	include/catch.hpp	10405;"	d
+CATCH_CONFIG_COLOUR_WINDOWS	include/catch.hpp	7052;"	d
+CATCH_CONFIG_CONSOLE_WIDTH	include/catch.hpp	3481;"	d
+CATCH_CONFIG_COUNTER	include/catch.hpp	281;"	d
+CATCH_CONFIG_CPP11_GENERATED_METHODS	include/catch.hpp	260;"	d
+CATCH_CONFIG_CPP11_IS_ENUM	include/catch.hpp	263;"	d
+CATCH_CONFIG_CPP11_LONG_LONG	include/catch.hpp	272;"	d
+CATCH_CONFIG_CPP11_NOEXCEPT	include/catch.hpp	257;"	d
+CATCH_CONFIG_CPP11_NULLPTR	include/catch.hpp	254;"	d
+CATCH_CONFIG_CPP11_OVERRIDE	include/catch.hpp	275;"	d
+CATCH_CONFIG_CPP11_TUPLE	include/catch.hpp	266;"	d
+CATCH_CONFIG_CPP11_UNIQUE_PTR	include/catch.hpp	278;"	d
+CATCH_CONFIG_MAIN	test/main.cc	1;"	d	file:
+CATCH_CONFIG_VARIADIC_MACROS	include/catch.hpp	269;"	d
+CATCH_CPP11_OR_GREATER	include/catch.hpp	112;"	d
+CATCH_CPP14_OR_GREATER	include/catch.hpp	116;"	d
+CATCH_FAIL	include/catch.hpp	10423;"	d
+CATCH_GENERATE	include/catch.hpp	10439;"	d
+CATCH_GIVEN	include/catch.hpp	10449;"	d
+CATCH_IMPL	include/catch.hpp	47;"	d
+CATCH_INFO	include/catch.hpp	10411;"	d
+CATCH_INTERNAL_CONFIG_COUNTER	include/catch.hpp	205;"	d
+CATCH_INTERNAL_CONFIG_CPP11_GENERATED_METHODS	include/catch.hpp	183;"	d
+CATCH_INTERNAL_CONFIG_CPP11_GENERATED_METHODS	include/catch.hpp	224;"	d
+CATCH_INTERNAL_CONFIG_CPP11_IS_ENUM	include/catch.hpp	228;"	d
+CATCH_INTERNAL_CONFIG_CPP11_LONG_LONG	include/catch.hpp	240;"	d
+CATCH_INTERNAL_CONFIG_CPP11_NOEXCEPT	include/catch.hpp	128;"	d
+CATCH_INTERNAL_CONFIG_CPP11_NOEXCEPT	include/catch.hpp	182;"	d
+CATCH_INTERNAL_CONFIG_CPP11_NOEXCEPT	include/catch.hpp	220;"	d
+CATCH_INTERNAL_CONFIG_CPP11_NULLPTR	include/catch.hpp	124;"	d
+CATCH_INTERNAL_CONFIG_CPP11_NULLPTR	include/catch.hpp	160;"	d
+CATCH_INTERNAL_CONFIG_CPP11_NULLPTR	include/catch.hpp	177;"	d
+CATCH_INTERNAL_CONFIG_CPP11_NULLPTR	include/catch.hpp	216;"	d
+CATCH_INTERNAL_CONFIG_CPP11_OVERRIDE	include/catch.hpp	244;"	d
+CATCH_INTERNAL_CONFIG_CPP11_TUPLE	include/catch.hpp	232;"	d
+CATCH_INTERNAL_CONFIG_CPP11_UNIQUE_PTR	include/catch.hpp	178;"	d
+CATCH_INTERNAL_CONFIG_CPP11_UNIQUE_PTR	include/catch.hpp	247;"	d
+CATCH_INTERNAL_CONFIG_VARIADIC_MACROS	include/catch.hpp	196;"	d
+CATCH_INTERNAL_CONFIG_VARIADIC_MACROS	include/catch.hpp	236;"	d
+CATCH_INTERNAL_ERROR	include/catch.hpp	432;"	d
+CATCH_INTERNAL_LINEINFO	include/catch.hpp	431;"	d
+CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS	include/catch.hpp	132;"	d
+CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS	include/catch.hpp	164;"	d
+CATCH_INTERNAL_SUPPRESS_PARENTHESES_WARNINGS	include/catch.hpp	285;"	d
+CATCH_METHOD_AS_TEST_CASE	include/catch.hpp	10420;"	d
+CATCH_NOEXCEPT	include/catch.hpp	/^        virtual const char* what() const CATCH_NOEXCEPT;$/;"	m	class:Catch::NotImplementedException
+CATCH_NOEXCEPT	include/catch.hpp	290;"	d
+CATCH_NOEXCEPT	include/catch.hpp	293;"	d
+CATCH_NOEXCEPT_IS	include/catch.hpp	291;"	d
+CATCH_NOEXCEPT_IS	include/catch.hpp	294;"	d
+CATCH_NOT_IMPLEMENTED	include/catch.hpp	456;"	d
+CATCH_NULL	include/catch.hpp	299;"	d
+CATCH_NULL	include/catch.hpp	301;"	d
+CATCH_OVERRIDE	include/catch.hpp	306;"	d
+CATCH_OVERRIDE	include/catch.hpp	308;"	d
+CATCH_PLATFORM_MAC	include/catch.hpp	2001;"	d
+CATCH_REGISTER_LEGACY_REPORTER	include/catch.hpp	10437;"	d
+CATCH_REGISTER_REPORTER	include/catch.hpp	10436;"	d
+CATCH_REGISTER_TAG_ALIAS	include/catch.hpp	2724;"	d
+CATCH_REGISTER_TEST_CASE	include/catch.hpp	10421;"	d
+CATCH_REQUIRE	include/catch.hpp	10389;"	d
+CATCH_REQUIRE_FALSE	include/catch.hpp	10390;"	d
+CATCH_REQUIRE_NOTHROW	include/catch.hpp	10395;"	d
+CATCH_REQUIRE_THAT	include/catch.hpp	10409;"	d
+CATCH_REQUIRE_THROWS	include/catch.hpp	10392;"	d
+CATCH_REQUIRE_THROWS_AS	include/catch.hpp	10393;"	d
+CATCH_REQUIRE_THROWS_WITH	include/catch.hpp	10394;"	d
+CATCH_SCENARIO	include/catch.hpp	10443;"	d
+CATCH_SCENARIO_METHOD	include/catch.hpp	10444;"	d
+CATCH_SCOPED_CAPTURE	include/catch.hpp	10415;"	d
+CATCH_SCOPED_INFO	include/catch.hpp	10413;"	d
+CATCH_SECTION	include/catch.hpp	10422;"	d
+CATCH_SUCCEED	include/catch.hpp	10424;"	d
+CATCH_TEMP_CLARA_CONFIG_CONSOLE_WIDTH	include/catch.hpp	3622;"	d
+CATCH_TEMP_CLARA_CONFIG_CONSOLE_WIDTH	include/catch.hpp	4651;"	d
+CATCH_TEST_CASE	include/catch.hpp	10418;"	d
+CATCH_TEST_CASE_METHOD	include/catch.hpp	10419;"	d
+CATCH_THEN	include/catch.hpp	10452;"	d
+CATCH_TRANSLATE_EXCEPTION	include/catch.hpp	10512;"	d
+CATCH_UNSAFE_UNRETAINED	include/catch.hpp	1532;"	d
+CATCH_UNSAFE_UNRETAINED	include/catch.hpp	1548;"	d
+CATCH_WARN	include/catch.hpp	10412;"	d
+CATCH_WHEN	include/catch.hpp	10450;"	d
+CC	makefile	/^CC=g++$/;"	m
+CFLAGS	makefile	/^CFLAGS=-I $(IDIR) -std=c++11$/;"	m
+CHECK_THAT	include/catch.hpp	10408;"	d
+CLARA_AUTO_PTR	include/catch.hpp	3933;"	d
+CLARA_CONFIG_CONSOLE_WIDTH	include/catch.hpp	3623;"	d
+CLARA_CONFIG_CONSOLE_WIDTH	include/catch.hpp	3625;"	d
+CLARA_CONFIG_CONSOLE_WIDTH	include/catch.hpp	4650;"	d
+CLARA_CONFIG_CPP11_GENERATED_METHODS	include/catch.hpp	3899;"	d
+CLARA_CONFIG_CPP11_NOEXCEPT	include/catch.hpp	3896;"	d
+CLARA_CONFIG_CPP11_NULLPTR	include/catch.hpp	3893;"	d
+CLARA_CONFIG_CPP11_OVERRIDE	include/catch.hpp	3902;"	d
+CLARA_CONFIG_CPP11_UNIQUE_PTR	include/catch.hpp	3905;"	d
+CLARA_CONFIG_MAIN	include/catch.hpp	10381;"	d
+CLARA_CONFIG_MAIN	include/catch.hpp	53;"	d
+CLARA_CONFIG_MAIN_NOT_DEFINED	include/catch.hpp	52;"	d
+CLARA_CPP11_OR_GREATER	include/catch.hpp	3868;"	d
+CLARA_INTERNAL_CONFIG_CPP11_GENERATED_METHODS	include/catch.hpp	3857;"	d
+CLARA_INTERNAL_CONFIG_CPP11_GENERATED_METHODS	include/catch.hpp	3879;"	d
+CLARA_INTERNAL_CONFIG_CPP11_NOEXCEPT	include/catch.hpp	3828;"	d
+CLARA_INTERNAL_CONFIG_CPP11_NOEXCEPT	include/catch.hpp	3856;"	d
+CLARA_INTERNAL_CONFIG_CPP11_NOEXCEPT	include/catch.hpp	3875;"	d
+CLARA_INTERNAL_CONFIG_CPP11_NULLPTR	include/catch.hpp	3824;"	d
+CLARA_INTERNAL_CONFIG_CPP11_NULLPTR	include/catch.hpp	3838;"	d
+CLARA_INTERNAL_CONFIG_CPP11_NULLPTR	include/catch.hpp	3851;"	d
+CLARA_INTERNAL_CONFIG_CPP11_NULLPTR	include/catch.hpp	3871;"	d
+CLARA_INTERNAL_CONFIG_CPP11_OVERRIDE	include/catch.hpp	3883;"	d
+CLARA_INTERNAL_CONFIG_CPP11_UNIQUE_PTR	include/catch.hpp	3852;"	d
+CLARA_INTERNAL_CONFIG_CPP11_UNIQUE_PTR	include/catch.hpp	3886;"	d
+CLARA_NOEXCEPT	include/catch.hpp	3910;"	d
+CLARA_NOEXCEPT_IS	include/catch.hpp	3911;"	d
+CLARA_NULL	include/catch.hpp	3919;"	d
+CLARA_OVERRIDE	include/catch.hpp	3926;"	d
+CLARA_PLATFORM_WINDOWS	include/catch.hpp	3948;"	d
+CLICHE_TBC_TEXT_FORMAT_OUTER_NAMESPACE	include/catch.hpp	4856;"	d
+CLICHE_TBC_TEXT_FORMAT_OUTER_NAMESPACE	include/catch.hpp	5004;"	d
+COMMON_DOC_FLAGS	makefile	/^COMMON_DOC_FLAGS = --report --merge docs -- output html $(SOURCES) $(HEADERS)$/;"	m
+CaseSensitive	include/catch.hpp	/^    struct CaseSensitive { enum Choice {$/;"	s	namespace:Catch
+CasedString	include/catch.hpp	/^            CasedString( std::string const& str, CaseSensitive::Choice caseSensitivity )$/;"	f	struct:Catch::Matchers::Impl::StdString::CasedString
+CasedString	include/catch.hpp	/^        struct CasedString$/;"	s	namespace:Catch::Matchers::Impl::StdString
+Catch	include/catch.hpp	/^namespace Catch {$/;"	n
+Choice	include/catch.hpp	/^    struct CaseSensitive { enum Choice {$/;"	g	struct:Catch::CaseSensitive
+Contains	include/catch.hpp	/^            Contains( Contains const& other ) : m_data( other.m_data ){}$/;"	f	struct:Catch::Matchers::Impl::StdString::Contains
+Contains	include/catch.hpp	/^            Contains( std::string const& substr, CaseSensitive::Choice caseSensitivity = CaseSensitive::Yes )$/;"	f	struct:Catch::Matchers::Impl::StdString::Contains
+Contains	include/catch.hpp	/^        struct Contains : MatcherImpl<Contains, std::string> {$/;"	s	namespace:Catch::Matchers::Impl::StdString
+Contains	include/catch.hpp	/^    inline Impl::StdString::Contains    Contains( const char* substr, CaseSensitive::Choice caseSensitivity = CaseSensitive::Yes ) {$/;"	f	namespace:Catch::Matchers
+Contains	include/catch.hpp	/^    inline Impl::StdString::Contains    Contains( std::string const& substr, CaseSensitive::Choice caseSensitivity = CaseSensitive::Yes ) {$/;"	f	namespace:Catch::Matchers
+ContinueOnFailure	include/catch.hpp	/^        ContinueOnFailure = 0x02,   \/\/ Failures fail test, but execution continues$/;"	e	enum:Catch::ResultDisposition::Flags
+CopyableStream	include/catch.hpp	/^        CopyableStream( CopyableStream const& other ) {$/;"	f	struct:Catch::CopyableStream
+CopyableStream	include/catch.hpp	/^        CopyableStream() {}$/;"	f	struct:Catch::CopyableStream
+CopyableStream	include/catch.hpp	/^    struct CopyableStream {$/;"	s	namespace:Catch
+Detail	include/catch.hpp	/^namespace Detail {$/;"	n	namespace:Catch
+DidntThrowException	include/catch.hpp	/^        DidntThrowException = Exception | 2,$/;"	e	enum:Catch::ResultWas::OfType
+DistributionByLogicValue	src/static_analyser.cc	/^void StaticAnalyserC::DistributionByLogicValue (int *hand, int len, iVector *distribution)$/;"	f	class:skrobot::StaticAnalyserC
+DistributionByValue	src/static_analyser.cc	/^void StaticAnalyserC::DistributionByValue(int *hand, int len, iVector *distribution)$/;"	f	class:skrobot::StaticAnalyserC
+EndsWith	include/catch.hpp	/^            EndsWith( EndsWith const& other ) : m_data( other.m_data ){}$/;"	f	struct:Catch::Matchers::Impl::StdString::EndsWith
+EndsWith	include/catch.hpp	/^            EndsWith( std::string const& substr, CaseSensitive::Choice caseSensitivity = CaseSensitive::Yes )$/;"	f	struct:Catch::Matchers::Impl::StdString::EndsWith
+EndsWith	include/catch.hpp	/^        struct EndsWith : MatcherImpl<EndsWith, std::string> {$/;"	s	namespace:Catch::Matchers::Impl::StdString
+EndsWith	include/catch.hpp	/^    inline Impl::StdString::EndsWith    EndsWith( const char* substr ) {$/;"	f	namespace:Catch::Matchers
+EndsWith	include/catch.hpp	/^    inline Impl::StdString::EndsWith    EndsWith( std::string const& substr ) {$/;"	f	namespace:Catch::Matchers
+EnumStringMaker	include/catch.hpp	/^    struct EnumStringMaker$/;"	s	namespace:Catch::Detail
+EnumStringMaker	include/catch.hpp	/^    struct EnumStringMaker<T,true>$/;"	s	namespace:Catch::Detail
+Equals	include/catch.hpp	/^            Equals( Equals const& other ) : m_data( other.m_data ){}$/;"	f	struct:Catch::Matchers::Impl::StdString::Equals
+Equals	include/catch.hpp	/^            Equals( std::string const& str, CaseSensitive::Choice caseSensitivity = CaseSensitive::Yes )$/;"	f	struct:Catch::Matchers::Impl::StdString::Equals
+Equals	include/catch.hpp	/^        struct Equals : MatcherImpl<Equals, std::string> {$/;"	s	namespace:Catch::Matchers::Impl::StdString
+Equals	include/catch.hpp	/^    inline Impl::StdString::Equals      Equals( const char* str, CaseSensitive::Choice caseSensitivity = CaseSensitive::Yes ) {$/;"	f	namespace:Catch::Matchers
+Equals	include/catch.hpp	/^    inline Impl::StdString::Equals      Equals( std::string const& str, CaseSensitive::Choice caseSensitivity = CaseSensitive::Yes ) {$/;"	f	namespace:Catch::Matchers
+Evaluator	include/catch.hpp	/^    class Evaluator{};$/;"	c	namespace:Catch::Internal
+Evaluator	include/catch.hpp	/^    struct Evaluator<T1, T2, IsEqualTo> {$/;"	s	namespace:Catch::Internal
+Evaluator	include/catch.hpp	/^    struct Evaluator<T1, T2, IsGreaterThan> {$/;"	s	namespace:Catch::Internal
+Evaluator	include/catch.hpp	/^    struct Evaluator<T1, T2, IsGreaterThanOrEqualTo> {$/;"	s	namespace:Catch::Internal
+Evaluator	include/catch.hpp	/^    struct Evaluator<T1, T2, IsLessThan> {$/;"	s	namespace:Catch::Internal
+Evaluator	include/catch.hpp	/^    struct Evaluator<T1, T2, IsLessThanOrEqualTo> {$/;"	s	namespace:Catch::Internal
+Evaluator	include/catch.hpp	/^    struct Evaluator<T1, T2, IsNotEqualTo> {$/;"	s	namespace:Catch::Internal
+Exception	include/catch.hpp	/^        Exception = 0x100 | FailureBit,$/;"	e	enum:Catch::ResultWas::OfType
+ExplicitFailure	include/catch.hpp	/^        ExplicitFailure = FailureBit | 2,$/;"	e	enum:Catch::ResultWas::OfType
+ExprComponents	include/catch.hpp	/^            ExprComponents() : testFalse( false ) {}$/;"	f	struct:Catch::ResultBuilder::ExprComponents
+ExprComponents	include/catch.hpp	/^        struct ExprComponents {$/;"	s	class:Catch::ResultBuilder
+ExpressionFailed	include/catch.hpp	/^        ExpressionFailed = FailureBit | 1,$/;"	e	enum:Catch::ResultWas::OfType
+ExpressionType	include/catch.hpp	/^        typedef ExpressionT ExpressionType;$/;"	t	struct:Catch::Matchers::Impl::Matcher
+FailureBit	include/catch.hpp	/^        FailureBit = 0x10,$/;"	e	enum:Catch::ResultWas::OfType
+FalseTest	include/catch.hpp	/^        FalseTest = 0x04,           \/\/ Prefix expression with !$/;"	e	enum:Catch::ResultDisposition::Flags
+FalseType	include/catch.hpp	/^    struct FalseType { char sizer[2]; };$/;"	s	namespace:Catch::Detail
+FatalErrorCondition	include/catch.hpp	/^        FatalErrorCondition = 0x200 | FailureBit$/;"	e	enum:Catch::ResultWas::OfType
+FillInDescriptor	src/static_analyser.cc	/^void StaticAnalyserC::FillInDescriptor (int hand_type, int start_value, int block_len, int num_of_blocks)$/;"	f	class:skrobot::StaticAnalyserC
+FindCardsByValue	src/static_analyser.cc	/^bool StaticAnalyserC::FindCardsByValue(int *hand, int len, int card_value, int num)$/;"	f	class:skrobot::StaticAnalyserC
+Flags	include/catch.hpp	/^    struct ResultDisposition { enum Flags {$/;"	g	struct:Catch::ResultDisposition
+GIVEN	include/catch.hpp	10522;"	d
+GenHandDescriptor	src/static_analyser.cc	/^bool StaticAnalyserC::GenHandDescriptor (int *hand, int len)$/;"	f	class:skrobot::StaticAnalyserC
+GenOptions	src/static_analyser.cc	/^bool StaticAnalyserC::GenOptions (int *hand, int len)$/;"	f	class:skrobot::StaticAnalyserC
+Generic	include/catch.hpp	/^    namespace Generic {$/;"	n	namespace:Catch::Matchers::Impl
+GetCardColor	src/common.cc	/^    int GetCardColor(int card) $/;"	f	namespace:skrobot
+GetCardLogicValue	src/common.cc	/^    int GetCardLogicValue (int card)$/;"	f	namespace:skrobot
+GetCardValue	src/common.cc	/^    int GetCardValue(int card) $/;"	f	namespace:skrobot
+GetDescriptor	include/static_analyser.h	/^        inline HandDescriptor GetDescriptor () {return descriptor_;}$/;"	f	class:skrobot::StaticAnalyserC
+GetRecord	src/history_keeper.cc	/^iVector* HistoryKeeperC::GetRecord (int player)$/;"	f	class:skrobot::HistoryKeeperC
+HEADERS	makefile	/^HEADERS = $(wildcard include\/*.h)$/;"	m
+HISTORY_KEEPER_H_	include/history_keeper.h	2;"	d
+HandDescriptor	include/static_analyser.h	/^struct HandDescriptor {$/;"	s	namespace:skrobot
+Hands	include/history_keeper.h	/^typedef iVector* Hands;$/;"	t	namespace:skrobot
+History	include/history_keeper.h	/^typedef std::unordered_map<int, Hands> History;$/;"	t	namespace:skrobot
+HistoryKeeperC	include/history_keeper.h	/^class HistoryKeeperC {$/;"	c	namespace:skrobot
+HistoryKeeperC	src/history_keeper.cc	/^HistoryKeeperC::HistoryKeeperC(int *players, int len) $/;"	f	class:skrobot::HistoryKeeperC
+IContext	include/catch.hpp	/^    struct IContext$/;"	s	namespace:Catch
+IDIR	makefile	/^IDIR=include$/;"	m
+IGeneratorInfo	include/catch.hpp	/^    struct IGeneratorInfo {$/;"	s	namespace:Catch
+IGeneratorsForTest	include/catch.hpp	/^    struct IGeneratorsForTest {$/;"	s	namespace:Catch
+IMutableContext	include/catch.hpp	/^    struct IMutableContext : IContext$/;"	s	namespace:Catch
+INTERNAL_CATCH_ELSE	include/catch.hpp	2084;"	d
+INTERNAL_CATCH_GENERATE	include/catch.hpp	2515;"	d
+INTERNAL_CATCH_IF	include/catch.hpp	2079;"	d
+INTERNAL_CATCH_INFO	include/catch.hpp	2159;"	d
+INTERNAL_CATCH_LINESTR	include/catch.hpp	2513;"	d
+INTERNAL_CATCH_LINESTR2	include/catch.hpp	2512;"	d
+INTERNAL_CATCH_METHOD_AS_TEST_CASE	include/catch.hpp	721;"	d
+INTERNAL_CATCH_MSG	include/catch.hpp	2141;"	d
+INTERNAL_CATCH_NO_THROW	include/catch.hpp	2089;"	d
+INTERNAL_CATCH_REACT	include/catch.hpp	2060;"	d
+INTERNAL_CATCH_REGISTER_LEGACY_REPORTER	include/catch.hpp	8913;"	d
+INTERNAL_CATCH_REGISTER_LISTENER	include/catch.hpp	8919;"	d
+INTERNAL_CATCH_REGISTER_REPORTER	include/catch.hpp	8916;"	d
+INTERNAL_CATCH_REGISTER_TESTCASE	include/catch.hpp	737;"	d
+INTERNAL_CATCH_SECTION	include/catch.hpp	2330;"	d
+INTERNAL_CATCH_STRINGIFY	include/catch.hpp	72;"	d
+INTERNAL_CATCH_STRINGIFY2	include/catch.hpp	71;"	d
+INTERNAL_CATCH_TEST	include/catch.hpp	2065;"	d
+INTERNAL_CATCH_TESTCASE	include/catch.hpp	717;"	d
+INTERNAL_CATCH_TESTCASE2	include/catch.hpp	713;"	d
+INTERNAL_CATCH_TEST_CASE_METHOD	include/catch.hpp	733;"	d
+INTERNAL_CATCH_TEST_CASE_METHOD2	include/catch.hpp	725;"	d
+INTERNAL_CATCH_THROWS	include/catch.hpp	2103;"	d
+INTERNAL_CATCH_THROWS_AS	include/catch.hpp	2120;"	d
+INTERNAL_CATCH_TRANSLATE_EXCEPTION	include/catch.hpp	2618;"	d
+INTERNAL_CATCH_TRANSLATE_EXCEPTION2	include/catch.hpp	2613;"	d
+INTERNAL_CATCH_UNIQUE_NAME	include/catch.hpp	66;"	d
+INTERNAL_CATCH_UNIQUE_NAME	include/catch.hpp	68;"	d
+INTERNAL_CATCH_UNIQUE_NAME_LINE	include/catch.hpp	64;"	d
+INTERNAL_CATCH_UNIQUE_NAME_LINE2	include/catch.hpp	63;"	d
+INTERNAL_CHECK_THAT	include/catch.hpp	2163;"	d
+IShared	include/catch.hpp	/^    struct IShared : NonCopyable {$/;"	s	namespace:Catch
+ITestCase	include/catch.hpp	/^    struct ITestCase : IShared {$/;"	s	namespace:Catch
+ITestCaseRegistry	include/catch.hpp	/^    struct ITestCaseRegistry {$/;"	s	namespace:Catch
+Impl	include/catch.hpp	/^    namespace Impl {$/;"	n	namespace:Catch::Matchers
+Info	include/catch.hpp	/^        Info = 1,$/;"	e	enum:Catch::ResultWas::OfType
+Internal	include/catch.hpp	/^namespace Internal {$/;"	n	namespace:Catch
+IsBomb	src/static_analyser.cc	/^bool StaticAnalyserC::IsBomb(int *hand, int len, bool is_sorted)$/;"	f	class:skrobot::StaticAnalyserC
+IsBomb3W	src/static_analyser.cc	/^bool StaticAnalyserC::IsBomb3W(int *hand, int len)$/;"	f	class:skrobot::StaticAnalyserC
+IsBombLink	src/static_analyser.cc	/^bool StaticAnalyserC::IsBombLink(int *hand, int len, int single_bomb_len)$/;"	f	class:skrobot::StaticAnalyserC
+IsBombTW	src/static_analyser.cc	/^bool StaticAnalyserC::IsBombTW(int *hand, int len)$/;"	f	class:skrobot::StaticAnalyserC
+IsDouble	src/static_analyser.cc	/^bool StaticAnalyserC::IsDouble(int *hand, int len) $/;"	f	class:skrobot::StaticAnalyserC
+IsDoubleLink	src/static_analyser.cc	/^bool StaticAnalyserC::IsDoubleLink(int *hand, int len)$/;"	f	class:skrobot::StaticAnalyserC
+IsEqualTo	include/catch.hpp	/^        IsEqualTo,$/;"	e	enum:Catch::Internal::Operator
+IsGreaterThan	include/catch.hpp	/^        IsGreaterThan,$/;"	e	enum:Catch::Internal::Operator
+IsGreaterThanOrEqualTo	include/catch.hpp	/^        IsGreaterThanOrEqualTo$/;"	e	enum:Catch::Internal::Operator
+IsLessThan	include/catch.hpp	/^        IsLessThan,$/;"	e	enum:Catch::Internal::Operator
+IsLessThanOrEqualTo	include/catch.hpp	/^        IsLessThanOrEqualTo,$/;"	e	enum:Catch::Internal::Operator
+IsNotEqualTo	include/catch.hpp	/^        IsNotEqualTo,$/;"	e	enum:Catch::Internal::Operator
+IsShunZi	src/static_analyser.cc	/^bool StaticAnalyserC::IsShunZi (int *hand, int len)$/;"	f	class:skrobot::StaticAnalyserC
+IsStreamInsertable	include/catch.hpp	/^    struct IsStreamInsertable {$/;"	s	namespace:Catch::Detail
+IsTriple	src/static_analyser.cc	/^bool StaticAnalyserC::IsTriple(int *hand, int len)$/;"	f	class:skrobot::StaticAnalyserC
+IsTripleLink	src/static_analyser.cc	/^bool StaticAnalyserC::IsTripleLink(int *hand, int len)$/;"	f	class:skrobot::StaticAnalyserC
+MakeBombsWithTrump	src/static_analyser.cc	/^void StaticAnalyserC::MakeBombsWithTrump($/;"	f	class:skrobot::StaticAnalyserC
+MakeXplesWithTrump	src/static_analyser.cc	/^bool StaticAnalyserC::MakeXplesWithTrump (int base, int base_len, int trump_needed, TrumpDescriptor trump_desc, iVector *output_options)$/;"	f	class:skrobot::StaticAnalyserC
+Matcher	include/catch.hpp	/^    struct Matcher : SharedImpl<IShared>$/;"	s	namespace:Catch::Matchers::Impl
+MatcherImpl	include/catch.hpp	/^    struct MatcherImpl : Matcher<ExpressionT> {$/;"	s	namespace:Catch::Matchers::Impl
+Matchers	include/catch.hpp	/^namespace Matchers {$/;"	n	namespace:Catch
+MethodTestCase	include/catch.hpp	/^    MethodTestCase( void (C::*method)() ) : m_method( method ) {}$/;"	f	class:Catch::MethodTestCase
+MethodTestCase	include/catch.hpp	/^class MethodTestCase : public SharedImpl<ITestCase> {$/;"	c	namespace:Catch
+NOMINMAX	include/catch.hpp	7061;"	d
+NameAndDesc	include/catch.hpp	/^    NameAndDesc( const char* _name = "", const char* _description= "" )$/;"	f	struct:Catch::NameAndDesc
+NameAndDesc	include/catch.hpp	/^struct NameAndDesc {$/;"	s	namespace:Catch
+No	include/catch.hpp	/^        No$/;"	e	enum:Catch::CaseSensitive::Choice
+NonCopyable	include/catch.hpp	/^        NonCopyable() {}$/;"	f	class:Catch::NonCopyable
+NonCopyable	include/catch.hpp	/^    class NonCopyable {$/;"	c	namespace:Catch
+Normal	include/catch.hpp	/^        Normal = 0x01,$/;"	e	enum:Catch::ResultDisposition::Flags
+Not	include/catch.hpp	/^            Not( Not const& other ) : m_matcher( other.m_matcher ) {}$/;"	f	class:Catch::Matchers::Impl::Generic::Not
+Not	include/catch.hpp	/^            explicit Not( Matcher<ExpressionT> const& matcher ) : m_matcher(matcher.clone()) {}$/;"	f	class:Catch::Matchers::Impl::Generic::Not
+Not	include/catch.hpp	/^        class Not : public MatcherImpl<Not<ExpressionT>, ExpressionT> {$/;"	c	namespace:Catch::Matchers::Impl::Generic
+Not	include/catch.hpp	/^    inline Impl::Generic::Not<ExpressionT> Not( Impl::Matcher<ExpressionT> const& m ) {$/;"	f	namespace:Catch::Matchers
+NotImplementedException	include/catch.hpp	/^        NotImplementedException( NotImplementedException const& ) {}$/;"	f	class:Catch::NotImplementedException
+NotImplementedException	include/catch.hpp	/^    class NotImplementedException : public std::exception$/;"	c	namespace:Catch
+NumCardByLogic	src/common.cc	/^    int NumCardByLogic (int *hand, int len, int value)$/;"	f	namespace:skrobot
+NumCardByValue	src/common.cc	/^    int NumCardByValue(int *hand, int len, int value)$/;"	f	namespace:skrobot
+NumTrump	src/common.cc	/^    int NumTrump(int *hand, int len)$/;"	f	namespace:skrobot
+NumTrump	src/common.cc	/^    void NumTrump(int *hand, int len, TrumpDescriptor *trump_desc)$/;"	f	namespace:skrobot
+NumberOfGap	src/static_analyser.cc	/^int StaticAnalyserC::NumberOfGap(iVector *distribution)$/;"	f	class:skrobot::StaticAnalyserC
+OBJ	makefile	/^OBJ=$(PROD_OBJ)$(TEST_OBJ)$/;"	m
+OC_TEST_CASE	include/catch.hpp	3067;"	d
+ODIR	makefile	/^ODIR=obj$/;"	m
+OfType	include/catch.hpp	/^    struct ResultWas { enum OfType {$/;"	g	struct:Catch::ResultWas
+Ok	include/catch.hpp	/^        Ok = 0,$/;"	e	enum:Catch::ResultWas::OfType
+Operator	include/catch.hpp	/^    enum Operator {$/;"	g	namespace:Catch::Internal
+OperatorTraits	include/catch.hpp	/^    template<> struct OperatorTraits<IsEqualTo>             { static const char* getName(){ return "=="; } };$/;"	s	namespace:Catch::Internal
+OperatorTraits	include/catch.hpp	/^    template<> struct OperatorTraits<IsGreaterThan>         { static const char* getName(){ return ">"; } };$/;"	s	namespace:Catch::Internal
+OperatorTraits	include/catch.hpp	/^    template<> struct OperatorTraits<IsGreaterThanOrEqualTo>{ static const char* getName(){ return ">="; } };$/;"	s	namespace:Catch::Internal
+OperatorTraits	include/catch.hpp	/^    template<> struct OperatorTraits<IsLessThan>            { static const char* getName(){ return "<"; } };$/;"	s	namespace:Catch::Internal
+OperatorTraits	include/catch.hpp	/^    template<> struct OperatorTraits<IsLessThanOrEqualTo>   { static const char* getName(){ return "<="; } };$/;"	s	namespace:Catch::Internal
+OperatorTraits	include/catch.hpp	/^    template<> struct OperatorTraits<IsNotEqualTo>          { static const char* getName(){ return "!="; } };$/;"	s	namespace:Catch::Internal
+OperatorTraits	include/catch.hpp	/^    template<Operator Op> struct OperatorTraits             { static const char* getName(){ return "*error*"; } };$/;"	s	namespace:Catch::Internal
+OptionsBombs	src/static_analyser.cc	/^void StaticAnalyserC::OptionsBombs (int *hand, int len, int start_value, int block_len, int num_of_blocks, iVector *output_options)$/;"	f	class:skrobot::StaticAnalyserC
+OptionsSingleCard	src/static_analyser.cc	/^bool StaticAnalyserC::OptionsSingleCard (int *hand, int len, int input_card, iVector *output_options)$/;"	f	class:skrobot::StaticAnalyserC
+OptionsXLinks	src/static_analyser.cc	/^bool StaticAnalyserC::OptionsXLinks (int *hand, int len, int link_start_value, int link_block_len, int link_total_len, iVector * output_options)$/;"	f	class:skrobot::StaticAnalyserC
+OptionsXples	src/static_analyser.cc	/^bool StaticAnalyserC::OptionsXples (int *hand, int len, int combo_card, int combo_len, iVector *output_options)$/;"	f	class:skrobot::StaticAnalyserC
+PROD_OBJ	makefile	/^PROD_OBJ=$(patsubst $(SRC)\/%.cc, $(ODIR)\/%.o, $(wildcard $(SRC)\/*.cc))$/;"	m
+Ptr	include/catch.hpp	/^        Ptr( Ptr const& other ) : m_p( other.m_p ){$/;"	f	class:Catch::Ptr
+Ptr	include/catch.hpp	/^        Ptr( T* p ) : m_p( p ){$/;"	f	class:Catch::Ptr
+Ptr	include/catch.hpp	/^        Ptr() : m_p( CATCH_NULL ){}$/;"	f	class:Catch::Ptr
+Ptr	include/catch.hpp	/^    class Ptr {$/;"	c	namespace:Catch
+React	src/static_analyser.cc	/^bool StaticAnalyserC::React (int *hand, int len, int *out_hand)$/;"	f	class:skrobot::StaticAnalyserC
+Record	src/history_keeper.cc	/^bool HistoryKeeperC::Record (int player, int *hand, int len)$/;"	f	class:skrobot::HistoryKeeperC
+ResultBuilder	include/catch.hpp	/^    class ResultBuilder {$/;"	c	namespace:Catch
+ResultDisposition	include/catch.hpp	/^    struct ResultDisposition { enum Flags {$/;"	s	namespace:Catch
+ResultWas	include/catch.hpp	/^    struct ResultWas { enum OfType {$/;"	s	namespace:Catch
+SCENARIO	include/catch.hpp	10516;"	d
+SCENARIO_METHOD	include/catch.hpp	10517;"	d
+SKROBOT_SKROBOT_COMMON_H_	include/common.h	2;"	d
+SOURCES	makefile	/^SOURCES = $(wildcard src\/*.cc)$/;"	m
+SRC	makefile	/^SRC=src$/;"	m
+STATIC_ANALYSER_H	include/static_analyser.h	2;"	d
+STITCH_CLARA_CLOSE_NAMESPACE	include/catch.hpp	3639;"	d
+STITCH_CLARA_CLOSE_NAMESPACE	include/catch.hpp	4643;"	d
+STITCH_CLARA_OPEN_NAMESPACE	include/catch.hpp	3628;"	d
+STITCH_CLARA_OPEN_NAMESPACE	include/catch.hpp	3638;"	d
+STITCH_CLARA_OPEN_NAMESPACE	include/catch.hpp	4642;"	d
+STITCH_CLARA_OPEN_NAMESPACE	include/catch.hpp	4646;"	d
+STITCH_TBC_TEXT_FORMAT_OPEN_NAMESPACE	include/catch.hpp	3644;"	d
+STITCH_TBC_TEXT_FORMAT_OPEN_NAMESPACE	include/catch.hpp	3794;"	d
+SafeBool	include/catch.hpp	/^    class SafeBool {$/;"	c	namespace:Catch
+SharedImpl	include/catch.hpp	/^        SharedImpl() : m_rc( 0 ){}$/;"	f	struct:Catch::SharedImpl
+SharedImpl	include/catch.hpp	/^    struct SharedImpl : T {$/;"	s	namespace:Catch
+SortByLogicValue	src/common.cc	/^    void SortByLogicValue(int *hand, int len, bool isAscending)$/;"	f	namespace:skrobot
+SortByValue	src/common.cc	/^    void SortByValue(int *hand, int len)$/;"	f	namespace:skrobot
+SourceLineInfo	include/catch.hpp	/^    struct SourceLineInfo {$/;"	s	namespace:Catch
+StartsWith	include/catch.hpp	/^            StartsWith( StartsWith const& other ) : m_data( other.m_data ){}$/;"	f	struct:Catch::Matchers::Impl::StdString::StartsWith
+StartsWith	include/catch.hpp	/^            StartsWith( std::string const& substr, CaseSensitive::Choice caseSensitivity = CaseSensitive::Yes )$/;"	f	struct:Catch::Matchers::Impl::StdString::StartsWith
+StartsWith	include/catch.hpp	/^        struct StartsWith : MatcherImpl<StartsWith, std::string> {$/;"	s	namespace:Catch::Matchers::Impl::StdString
+StartsWith	include/catch.hpp	/^    inline Impl::StdString::StartsWith  StartsWith( const char* substr ) {$/;"	f	namespace:Catch::Matchers
+StartsWith	include/catch.hpp	/^    inline Impl::StdString::StartsWith  StartsWith( std::string const& substr ) {$/;"	f	namespace:Catch::Matchers
+StaticAnalyserC	include/static_analyser.h	/^class StaticAnalyserC {$/;"	c	namespace:skrobot
+StdString	include/catch.hpp	/^    namespace StdString {$/;"	n	namespace:Catch::Matchers::Impl
+StreamEndStop	include/catch.hpp	/^    struct StreamEndStop {$/;"	s	namespace:Catch
+StringMaker	include/catch.hpp	/^struct StringMaker :$/;"	s	namespace:Catch
+StringMaker	include/catch.hpp	/^struct StringMaker<R C::*> {$/;"	s	namespace:Catch
+StringMaker	include/catch.hpp	/^struct StringMaker<T*> {$/;"	s	namespace:Catch
+StringMakerBase	include/catch.hpp	/^    struct StringMakerBase {$/;"	s	namespace:Catch::Detail
+StringMakerBase	include/catch.hpp	/^    struct StringMakerBase<true> {$/;"	s	namespace:Catch::Detail
+SuppressFail	include/catch.hpp	/^        SuppressFail = 0x08         \/\/ Failures are reported but do not fail the test$/;"	e	enum:Catch::ResultDisposition::Flags
+TBC_TEXT_FORMAT_CONSOLE_WIDTH	include/catch.hpp	4854;"	d
+TBC_TEXT_FORMAT_H_INCLUDED	include/catch.hpp	3651;"	d
+TEST_DIR	makefile	/^TEST_DIR=test$/;"	m
+TEST_OBJ	makefile	/^TEST_OBJ=$(patsubst $(TEST_DIR)\/%.cc, $(ODIR)\/%.t, $(wildcard $(TEST_DIR)\/*.cc))$/;"	m
+THEN	include/catch.hpp	10525;"	d
+TWOBLUECUBES_CATCH_APPROX_HPP_INCLUDED	include/catch.hpp	2621;"	d
+TWOBLUECUBES_CATCH_ASSERTIONRESULT_HPP_INCLUDED	include/catch.hpp	7289;"	d
+TWOBLUECUBES_CATCH_ASSERTIONRESULT_H_INCLUDED	include/catch.hpp	829;"	d
+TWOBLUECUBES_CATCH_CAPTURE_HPP_INCLUDED	include/catch.hpp	771;"	d
+TWOBLUECUBES_CATCH_CLARA_H_INCLUDED	include/catch.hpp	3618;"	d
+TWOBLUECUBES_CATCH_COMMANDLINE_HPP_INCLUDED	include/catch.hpp	3096;"	d
+TWOBLUECUBES_CATCH_COMMON_HPP_INCLUDED	include/catch.hpp	7803;"	d
+TWOBLUECUBES_CATCH_COMMON_H_INCLUDED	include/catch.hpp	61;"	d
+TWOBLUECUBES_CATCH_COMPILER_CAPABILITIES_HPP_INCLUDED	include/catch.hpp	79;"	d
+TWOBLUECUBES_CATCH_CONFIG_HPP_INCLUDED	include/catch.hpp	3099;"	d
+TWOBLUECUBES_CATCH_CONSOLE_COLOUR_HPP_INCLUDED	include/catch.hpp	5012;"	d
+TWOBLUECUBES_CATCH_CONSOLE_COLOUR_IMPL_HPP_INCLUDED	include/catch.hpp	7028;"	d
+TWOBLUECUBES_CATCH_CONTEXT_H_INCLUDED	include/catch.hpp	459;"	d
+TWOBLUECUBES_CATCH_CONTEXT_IMPL_HPP_INCLUDED	include/catch.hpp	6841;"	d
+TWOBLUECUBES_CATCH_DEBUGGER_HPP_INCLUDED	include/catch.hpp	7944;"	d
+TWOBLUECUBES_CATCH_DEBUGGER_H_INCLUDED	include/catch.hpp	1995;"	d
+TWOBLUECUBES_CATCH_DEFAULT_MAIN_HPP_INCLUDED	include/catch.hpp	10349;"	d
+TWOBLUECUBES_CATCH_EVALUATE_HPP_INCLUDED	include/catch.hpp	1291;"	d
+TWOBLUECUBES_CATCH_EXCEPTION_TRANSLATOR_REGISTRY_HPP_INCLUDED	include/catch.hpp	6690;"	d
+TWOBLUECUBES_CATCH_EXPRESSION_LHS_HPP_INCLUDED	include/catch.hpp	1288;"	d
+TWOBLUECUBES_CATCH_FATAL_CONDITION_H_INCLUDED	include/catch.hpp	5808;"	d
+TWOBLUECUBES_CATCH_GENERATORS_HPP_INCLUDED	include/catch.hpp	2338;"	d
+TWOBLUECUBES_CATCH_GENERATORS_IMPL_HPP_INCLUDED	include/catch.hpp	7215;"	d
+TWOBLUECUBES_CATCH_HPP_INCLUDED	include/catch.hpp	14;"	d
+TWOBLUECUBES_CATCH_IMPL_HPP_INCLUDED	include/catch.hpp	3082;"	d
+TWOBLUECUBES_CATCH_INTERFACES_CAPTURE_H_INCLUDED	include/catch.hpp	1958;"	d
+TWOBLUECUBES_CATCH_INTERFACES_CONFIG_H_INCLUDED	include/catch.hpp	3355;"	d
+TWOBLUECUBES_CATCH_INTERFACES_EXCEPTION_H_INCLUDED	include/catch.hpp	2518;"	d
+TWOBLUECUBES_CATCH_INTERFACES_GENERATORS_H_INCLUDED	include/catch.hpp	462;"	d
+TWOBLUECUBES_CATCH_INTERFACES_REGISTRY_HUB_H_INCLUDED	include/catch.hpp	2524;"	d
+TWOBLUECUBES_CATCH_INTERFACES_REPORTER_H_INCLUDED	include/catch.hpp	5069;"	d
+TWOBLUECUBES_CATCH_INTERFACES_RUNNER_H_INCLUDED	include/catch.hpp	2044;"	d
+TWOBLUECUBES_CATCH_INTERFACES_TAG_ALIAS_REGISTRY_H_INCLUDED	include/catch.hpp	2702;"	d
+TWOBLUECUBES_CATCH_INTERFACES_TESTCASE_H_INCLUDED	include/catch.hpp	611;"	d
+TWOBLUECUBES_CATCH_LEGACY_REPORTER_ADAPTER_HPP_INCLUDED	include/catch.hpp	7625;"	d
+TWOBLUECUBES_CATCH_LEGACY_REPORTER_ADAPTER_H_INCLUDED	include/catch.hpp	7628;"	d
+TWOBLUECUBES_CATCH_LIST_HPP_INCLUDED	include/catch.hpp	4849;"	d
+TWOBLUECUBES_CATCH_MATCHERS_HPP_INCLUDED	include/catch.hpp	891;"	d
+TWOBLUECUBES_CATCH_MESSAGE_HPP_INCLUDED	include/catch.hpp	7590;"	d
+TWOBLUECUBES_CATCH_MESSAGE_H_INCLUDED	include/catch.hpp	1902;"	d
+TWOBLUECUBES_CATCH_NOTIMPLEMENTED_EXCEPTION_HPP_INCLUDED	include/catch.hpp	6820;"	d
+TWOBLUECUBES_CATCH_NOTIMPLEMENTED_EXCEPTION_H_INCLUDED	include/catch.hpp	58;"	d
+TWOBLUECUBES_CATCH_OBJC_ARC_HPP_INCLUDED	include/catch.hpp	1510;"	d
+TWOBLUECUBES_CATCH_OBJC_HPP_INCLUDED	include/catch.hpp	2888;"	d
+TWOBLUECUBES_CATCH_OPTION_HPP_INCLUDED	include/catch.hpp	2726;"	d
+TWOBLUECUBES_CATCH_PLATFORM_H_INCLUDED	include/catch.hpp	1998;"	d
+TWOBLUECUBES_CATCH_PTR_HPP_INCLUDED	include/catch.hpp	486;"	d
+TWOBLUECUBES_CATCH_REENABLE_WARNINGS_H_INCLUDED	include/catch.hpp	9155;"	d
+TWOBLUECUBES_CATCH_REGISTRY_HUB_HPP_INCLUDED	include/catch.hpp	6450;"	d
+TWOBLUECUBES_CATCH_REPORTER_BASES_HPP_INCLUDED	include/catch.hpp	8601;"	d
+TWOBLUECUBES_CATCH_REPORTER_COMPACT_HPP_INCLUDED	include/catch.hpp	9991;"	d
+TWOBLUECUBES_CATCH_REPORTER_CONSOLE_HPP_INCLUDED	include/catch.hpp	9559;"	d
+TWOBLUECUBES_CATCH_REPORTER_JUNIT_HPP_INCLUDED	include/catch.hpp	9350;"	d
+TWOBLUECUBES_CATCH_REPORTER_MULTI_HPP_INCLUDED	include/catch.hpp	8462;"	d
+TWOBLUECUBES_CATCH_REPORTER_REGISTRARS_HPP_INCLUDED	include/catch.hpp	8836;"	d
+TWOBLUECUBES_CATCH_REPORTER_REGISTRY_HPP_INCLUDED	include/catch.hpp	6650;"	d
+TWOBLUECUBES_CATCH_REPORTER_XML_HPP_INCLUDED	include/catch.hpp	8598;"	d
+TWOBLUECUBES_CATCH_RESULT_BUILDER_HPP_INCLUDED	include/catch.hpp	8225;"	d
+TWOBLUECUBES_CATCH_RESULT_BUILDER_H_INCLUDED	include/catch.hpp	774;"	d
+TWOBLUECUBES_CATCH_RESULT_TYPE_H_INCLUDED	include/catch.hpp	777;"	d
+TWOBLUECUBES_CATCH_RUNNER_HPP_INCLUDED	include/catch.hpp	3093;"	d
+TWOBLUECUBES_CATCH_RUNNER_IMPL_HPP_INCLUDED	include/catch.hpp	5488;"	d
+TWOBLUECUBES_CATCH_SECTION_HPP_INCLUDED	include/catch.hpp	7906;"	d
+TWOBLUECUBES_CATCH_SECTION_H_INCLUDED	include/catch.hpp	2181;"	d
+TWOBLUECUBES_CATCH_SECTION_INFO_H_INCLUDED	include/catch.hpp	2184;"	d
+TWOBLUECUBES_CATCH_STREAMBUF_H_INCLUDED	include/catch.hpp	3416;"	d
+TWOBLUECUBES_CATCH_STREAM_HPP_INCLUDED	include/catch.hpp	6844;"	d
+TWOBLUECUBES_CATCH_STREAM_H_INCLUDED	include/catch.hpp	3413;"	d
+TWOBLUECUBES_CATCH_TAG_ALIAS_H_INCLUDED	include/catch.hpp	2705;"	d
+TWOBLUECUBES_CATCH_TAG_ALIAS_REGISTRY_HPP_INCLUDED	include/catch.hpp	8370;"	d
+TWOBLUECUBES_CATCH_TAG_ALIAS_REGISTRY_H_INCLUDED	include/catch.hpp	8373;"	d
+TWOBLUECUBES_CATCH_TEST_CASE_INFO_HPP_INCLUDED	include/catch.hpp	7369;"	d
+TWOBLUECUBES_CATCH_TEST_CASE_INFO_H_INCLUDED	include/catch.hpp	2805;"	d
+TWOBLUECUBES_CATCH_TEST_CASE_REGISTRY_IMPL_HPP_INCLUDED	include/catch.hpp	6453;"	d
+TWOBLUECUBES_CATCH_TEST_CASE_TRACKER_HPP_INCLUDED	include/catch.hpp	5491;"	d
+TWOBLUECUBES_CATCH_TEST_REGISTRY_HPP_INCLUDED	include/catch.hpp	608;"	d
+TWOBLUECUBES_CATCH_TEST_SPEC_HPP_INCLUDED	include/catch.hpp	3110;"	d
+TWOBLUECUBES_CATCH_TEST_SPEC_PARSER_HPP_INCLUDED	include/catch.hpp	3102;"	d
+TWOBLUECUBES_CATCH_TEXT_H_INCLUDED	include/catch.hpp	4852;"	d
+TWOBLUECUBES_CATCH_TIMER_H_INCLUDED	include/catch.hpp	2282;"	d
+TWOBLUECUBES_CATCH_TOSTRING_HPP_INCLUDED	include/catch.hpp	8033;"	d
+TWOBLUECUBES_CATCH_TOSTRING_H_INCLUDED	include/catch.hpp	1500;"	d
+TWOBLUECUBES_CATCH_TOTALS_HPP_INCLUDED	include/catch.hpp	2187;"	d
+TWOBLUECUBES_CATCH_VERSION_HPP_INCLUDED	include/catch.hpp	7556;"	d
+TWOBLUECUBES_CATCH_VERSION_H_INCLUDED	include/catch.hpp	6220;"	d
+TWOBLUECUBES_CATCH_WILDCARD_PATTERN_HPP_INCLUDED	include/catch.hpp	3118;"	d
+TWOBLUECUBES_CATCH_XMLWRITER_HPP_INCLUDED	include/catch.hpp	8923;"	d
+TWOBLUECUBES_CLARA_COMPILERS_H_INCLUDED	include/catch.hpp	3799;"	d
+TWOBLUECUBES_CLARA_H_INCLUDED	include/catch.hpp	3637;"	d
+TWOBLUECUBES_SINGLE_INCLUDE_CATCH_HPP_INCLUDED	include/catch.hpp	12;"	d
+TWOBLUECUBES_TEXT_FORMAT_H_ALREADY_INCLUDED	include/catch.hpp	4862;"	d
+TestFailureException	include/catch.hpp	/^    struct TestFailureException{};$/;"	s	namespace:Catch
+TestFunction	include/catch.hpp	/^typedef void(*TestFunction)();$/;"	t	namespace:Catch
+ThrewException	include/catch.hpp	/^        ThrewException = Exception | 1,$/;"	e	enum:Catch::ResultWas::OfType
+TrueType	include/catch.hpp	/^    struct TrueType { char sizer[1]; };$/;"	s	namespace:Catch::Detail
+TrumpDescriptor	include/common.h	/^struct TrumpDescriptor {$/;"	s	namespace:skrobot
+TrumpNeededForBomb	src/static_analyser.cc	/^int StaticAnalyserC::TrumpNeededForBomb(iVector *distribution)$/;"	f	class:skrobot::StaticAnalyserC
+TrumpNeededForXLink	src/static_analyser.cc	/^int StaticAnalyserC::TrumpNeededForXLink(int target, iVector *distribution)$/;"	f	class:skrobot::StaticAnalyserC
+TupleDetail	include/catch.hpp	/^namespace TupleDetail {$/;"	n	namespace:Catch
+Unknown	include/catch.hpp	/^        Unknown = -1,$/;"	e	enum:Catch::ResultWas::OfType
+WHEN	include/catch.hpp	10523;"	d
+Warning	include/catch.hpp	/^        Warning = 2,$/;"	e	enum:Catch::ResultWas::OfType
+Yes	include/catch.hpp	/^        Yes,$/;"	e	enum:Catch::CaseSensitive::Choice
+add	include/catch.hpp	/^            AllOf& add( Matcher<ExpressionT> const& matcher ) {$/;"	f	class:Catch::Matchers::Impl::Generic::AllOf
+add	include/catch.hpp	/^            AnyOf& add( Matcher<ExpressionT> const& matcher ) {$/;"	f	class:Catch::Matchers::Impl::Generic::AnyOf
+addRef	include/catch.hpp	/^        virtual void addRef() const {$/;"	f	struct:Catch::SharedImpl
+adjustString	include/catch.hpp	/^            std::string adjustString( std::string const& str ) const {$/;"	f	struct:Catch::Matchers::Impl::StdString::CasedString
+alwaysFalse	include/catch.hpp	/^    inline bool alwaysFalse() { return false; }$/;"	f	namespace:Catch
+alwaysTrue	include/catch.hpp	/^    inline bool alwaysTrue() { return true; }$/;"	f	namespace:Catch
+applyEvaluator	include/catch.hpp	/^    bool applyEvaluator( T1 const& lhs, T2 const& rhs ) {$/;"	f	namespace:Catch::Internal
+arcSafeRelease	include/catch.hpp	/^inline void arcSafeRelease( NSObject* ){}$/;"	f
+arcSafeRelease	include/catch.hpp	/^inline void arcSafeRelease( NSObject* obj ) {$/;"	f
+block_len	include/static_analyser.h	/^    int block_len;   \/\/一副手牌中相同点数的牌的数量$/;"	m	struct:skrobot::HandDescriptor
+capturedExpression	include/catch.hpp	/^        std::string capturedExpression;$/;"	m	struct:Catch::AssertionInfo
+clone	include/catch.hpp	/^        virtual Ptr<Matcher<ExpressionT> > clone() const {$/;"	f	struct:Catch::Matchers::Impl::MatcherImpl
+compare	include/catch.hpp	/^    bool compare( T1 const& lhs, T2 const& rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op, typename T> bool compare( T* lhs, int rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op, typename T> bool compare( T* lhs, long long rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op, typename T> bool compare( T* lhs, long rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op, typename T> bool compare( T* lhs, std::nullptr_t ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op, typename T> bool compare( int lhs, T* rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op, typename T> bool compare( long lhs, T* rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op, typename T> bool compare( long long lhs, T* rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op, typename T> bool compare( std::nullptr_t, T* rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( int lhs, unsigned char rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( int lhs, unsigned int rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( int lhs, unsigned long rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( long lhs, unsigned char rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( long lhs, unsigned int rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( long lhs, unsigned long rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( long long lhs, unsigned char rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( long long lhs, unsigned int rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( long long lhs, unsigned long long rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( long long lhs, unsigned long rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( unsigned char lhs, int rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( unsigned char lhs, long rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( unsigned int lhs, int rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( unsigned int lhs, long rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( unsigned long lhs, int rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( unsigned long lhs, long rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( unsigned long long lhs, char rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( unsigned long long lhs, int rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( unsigned long long lhs, long long rhs ) {$/;"	f	namespace:Catch::Internal
+compare	include/catch.hpp	/^    template<Operator Op> bool compare( unsigned long long lhs, long rhs ) {$/;"	f	namespace:Catch::Internal
+convert	include/catch.hpp	/^        static std::string convert( T const& ) { return unprintableString; }$/;"	f	struct:Catch::Detail::EnumStringMaker
+convert	include/catch.hpp	/^        static std::string convert( T const& _value ) {$/;"	f	struct:Catch::Detail::StringMakerBase
+convert	include/catch.hpp	/^        static std::string convert( T const& v )$/;"	f	struct:Catch::Detail::EnumStringMaker
+convert	include/catch.hpp	/^        static std::string convert( T const& v )$/;"	f	struct:Catch::Detail::StringMakerBase
+convert	include/catch.hpp	/^    static std::string convert( R C::* p ) {$/;"	f	struct:Catch::StringMaker
+convert	include/catch.hpp	/^    static std::string convert( U* p ) {$/;"	f	struct:Catch::StringMaker
+deleteAll	include/catch.hpp	/^    inline void deleteAll( ContainerT& container ) {$/;"	f	namespace:Catch
+deleteAllValues	include/catch.hpp	/^    inline void deleteAllValues( AssociativeContainerT& container ) {$/;"	f	namespace:Catch
+description	include/catch.hpp	/^    const char* description;$/;"	m	struct:Catch::NameAndDesc
+descriptor_	include/static_analyser.h	/^        HandDescriptor descriptor_;$/;"	m	class:skrobot::StaticAnalyserC
+evaluate	include/catch.hpp	/^        static bool evaluate( T1 const& lhs, T2 const& rhs ) {$/;"	f	struct:Catch::Internal::Evaluator
+evaluate	include/catch.hpp	/^        static bool evaluate( T1 const& lhs, T2 const& rhs) {$/;"	f	struct:Catch::Internal::Evaluator
+file	include/catch.hpp	/^        std::string file;$/;"	m	struct:Catch::SourceLineInfo
+get	include/catch.hpp	/^        T* get() const{ return m_p; }$/;"	f	class:Catch::Ptr
+getName	include/catch.hpp	/^    template<> struct OperatorTraits<IsEqualTo>             { static const char* getName(){ return "=="; } };$/;"	f	struct:Catch::Internal::OperatorTraits
+getName	include/catch.hpp	/^    template<> struct OperatorTraits<IsGreaterThan>         { static const char* getName(){ return ">"; } };$/;"	f	struct:Catch::Internal::OperatorTraits
+getName	include/catch.hpp	/^    template<> struct OperatorTraits<IsGreaterThanOrEqualTo>{ static const char* getName(){ return ">="; } };$/;"	f	struct:Catch::Internal::OperatorTraits
+getName	include/catch.hpp	/^    template<> struct OperatorTraits<IsLessThan>            { static const char* getName(){ return "<"; } };$/;"	f	struct:Catch::Internal::OperatorTraits
+getName	include/catch.hpp	/^    template<> struct OperatorTraits<IsLessThanOrEqualTo>   { static const char* getName(){ return "<="; } };$/;"	f	struct:Catch::Internal::OperatorTraits
+getName	include/catch.hpp	/^    template<> struct OperatorTraits<IsNotEqualTo>          { static const char* getName(){ return "!="; } };$/;"	f	struct:Catch::Internal::OperatorTraits
+getName	include/catch.hpp	/^    template<Operator Op> struct OperatorTraits             { static const char* getName(){ return "*error*"; } };$/;"	f	struct:Catch::Internal::OperatorTraits
+hand_type	include/static_analyser.h	/^    int hand_type;$/;"	m	struct:skrobot::HandDescriptor
+history_	include/history_keeper.h	/^        History history_;$/;"	m	class:skrobot::HistoryKeeperC
+iVector	include/common.h	/^typedef std::vector<int> iVector;$/;"	t	namespace:skrobot
+invoke	include/catch.hpp	/^    virtual void invoke() const {$/;"	f	class:Catch::MethodTestCase
+isFalseTest	include/catch.hpp	/^    inline bool isFalseTest( int flags )                { return ( flags & ResultDisposition::FalseTest ) != 0; }$/;"	f	namespace:Catch
+isJustInfo	include/catch.hpp	/^    inline bool isJustInfo( int flags ) {$/;"	f	namespace:Catch
+isOk	include/catch.hpp	/^    inline bool isOk( ResultWas::OfType resultType ) {$/;"	f	namespace:Catch
+isTrue	include/catch.hpp	/^    inline bool isTrue( bool value ){ return value; }$/;"	f	namespace:Catch
+kDeckLength	include/common.h	/^const int kDeckLength           = 108;  \/\/游戏起始扑克数量$/;"	m	namespace:skrobot
+kHandTypeBomb	include/common.h	/^const int kHandTypeBomb         = 7;    \/\/炸弹$/;"	m	namespace:skrobot
+kHandTypeBomb3W	include/common.h	/^const int kHandTypeBomb3W       = 8;    \/\/三王炸$/;"	m	namespace:skrobot
+kHandTypeBombLink	include/common.h	/^const int kHandTypeBombLink     = 10;   \/\/排炸$/;"	m	namespace:skrobot
+kHandTypeBombTW	include/common.h	/^const int kHandTypeBombTW       = 9;    \/\/天王炸$/;"	m	namespace:skrobot
+kHandTypeDouble	include/common.h	/^const int kHandTypeDouble       = 2;    \/\/对子$/;"	m	namespace:skrobot
+kHandTypeDoubleLink	include/common.h	/^const int kHandTypeDoubleLink   = 4;    \/\/对连$/;"	m	namespace:skrobot
+kHandTypeError	include/common.h	/^const int kHandTypeError        = 0;    \/\/错误$/;"	m	namespace:skrobot
+kHandTypeShunzi	include/common.h	/^const int kHandTypeShunzi       = 6;    \/\/顺子$/;"	m	namespace:skrobot
+kHandTypeSingle	include/common.h	/^const int kHandTypeSingle       = 1;    \/\/单张$/;"	m	namespace:skrobot
+kHandTypeTriple	include/common.h	/^const int kHandTypeTriple       = 3;    \/\/三条$/;"	m	namespace:skrobot
+kHandTypeTripleLink	include/common.h	/^const int kHandTypeTripleLink   = 5;    \/\/三连$/;"	m	namespace:skrobot
+kMaskColor	include/common.h	/^const int kMaskColor            = 0xF0; \/\/花色掩码$/;"	m	namespace:skrobot
+kMaskValue	include/common.h	/^const int kMaskValue            = 0x0F; \/\/牌值掩码$/;"	m	namespace:skrobot
+kMaxHandLength	include/common.h	/^const int kMaxHandLength        = 27;   \/\/玩家起始手牌数量$/;"	m	namespace:skrobot
+kTrumpColor	include/common.h	/^const int kTrumpColor           = 0x40; \/\/司令的花色$/;"	m	namespace:skrobot
+lhs	include/catch.hpp	/^            std::string lhs, rhs, op;$/;"	m	struct:Catch::ResultBuilder::ExprComponents
+line	include/catch.hpp	/^        std::size_t line;$/;"	m	struct:Catch::SourceLineInfo
+lineInfo	include/catch.hpp	/^        SourceLineInfo lineInfo;$/;"	m	struct:Catch::AssertionInfo
+m_assertionInfo	include/catch.hpp	/^        AssertionInfo m_assertionInfo;$/;"	m	class:Catch::ResultBuilder
+m_caseSensitivity	include/catch.hpp	/^            CaseSensitive::Choice m_caseSensitivity;$/;"	m	struct:Catch::Matchers::Impl::StdString::CasedString
+m_count	include/catch.hpp	/^        std::size_t m_count;$/;"	m	struct:Catch::pluralise
+m_data	include/catch.hpp	/^            CasedString m_data;$/;"	m	struct:Catch::Matchers::Impl::StdString::Contains
+m_data	include/catch.hpp	/^            CasedString m_data;$/;"	m	struct:Catch::Matchers::Impl::StdString::EndsWith
+m_data	include/catch.hpp	/^            CasedString m_data;$/;"	m	struct:Catch::Matchers::Impl::StdString::Equals
+m_data	include/catch.hpp	/^            CasedString m_data;$/;"	m	struct:Catch::Matchers::Impl::StdString::StartsWith
+m_data	include/catch.hpp	/^        AssertionResultData m_data;$/;"	m	class:Catch::ResultBuilder
+m_exprComponents	include/catch.hpp	/^        } m_exprComponents;$/;"	m	class:Catch::ResultBuilder	typeref:struct:Catch::ResultBuilder::ExprComponents
+m_info	include/catch.hpp	/^        AssertionInfo m_info;$/;"	m	class:Catch::AssertionResult
+m_label	include/catch.hpp	/^        std::string m_label;$/;"	m	struct:Catch::pluralise
+m_lineInfo	include/catch.hpp	/^        SourceLineInfo m_lineInfo;$/;"	m	class:Catch::NotImplementedException
+m_matcher	include/catch.hpp	/^            Ptr< Matcher<ExpressionT> > m_matcher;$/;"	m	class:Catch::Matchers::Impl::Generic::Not
+m_matchers	include/catch.hpp	/^            std::vector<Ptr<Matcher<ExpressionT> > > m_matchers;$/;"	m	class:Catch::Matchers::Impl::Generic::AllOf
+m_matchers	include/catch.hpp	/^            std::vector<Ptr<Matcher<ExpressionT> > > m_matchers;$/;"	m	class:Catch::Matchers::Impl::Generic::AnyOf
+m_method	include/catch.hpp	/^    void (C::*m_method)();$/;"	m	class:Catch::MethodTestCase
+m_p	include/catch.hpp	/^        T* m_p;$/;"	m	class:Catch::Ptr
+m_rc	include/catch.hpp	/^        mutable unsigned int m_rc;$/;"	m	struct:Catch::SharedImpl
+m_resultData	include/catch.hpp	/^        AssertionResultData m_resultData;$/;"	m	class:Catch::AssertionResult
+m_shouldDebugBreak	include/catch.hpp	/^        bool m_shouldDebugBreak;$/;"	m	class:Catch::ResultBuilder
+m_shouldThrow	include/catch.hpp	/^        bool m_shouldThrow;$/;"	m	class:Catch::ResultBuilder
+m_str	include/catch.hpp	/^            std::string m_str;$/;"	m	struct:Catch::Matchers::Impl::StdString::CasedString
+m_stream	include/catch.hpp	/^        CopyableStream m_stream;$/;"	m	class:Catch::ResultBuilder
+m_what	include/catch.hpp	/^        std::string m_what;$/;"	m	class:Catch::NotImplementedException
+macroName	include/catch.hpp	/^        std::string macroName;$/;"	m	struct:Catch::AssertionInfo
+makeSafe	include/catch.hpp	/^        static type makeSafe( bool value ) {$/;"	f	class:Catch::SafeBool
+makeString	include/catch.hpp	/^        inline std::string makeString( const char* str ) { return str ? std::string( str ) : std::string(); }$/;"	f	namespace:Catch::Matchers::Impl::StdString
+makeString	include/catch.hpp	/^        inline std::string makeString( std::string const& str ) { return str; }$/;"	f	namespace:Catch::Matchers::Impl::StdString
+match	include/catch.hpp	/^            virtual bool match( ExpressionT const& expr ) const$/;"	f	class:Catch::Matchers::Impl::Generic::AllOf
+match	include/catch.hpp	/^            virtual bool match( ExpressionT const& expr ) const$/;"	f	class:Catch::Matchers::Impl::Generic::AnyOf
+match	include/catch.hpp	/^            virtual bool match( std::string const& expr ) const {$/;"	f	struct:Catch::Matchers::Impl::StdString::Contains
+match	include/catch.hpp	/^            virtual bool match( std::string const& expr ) const {$/;"	f	struct:Catch::Matchers::Impl::StdString::EndsWith
+match	include/catch.hpp	/^            virtual bool match( std::string const& expr ) const {$/;"	f	struct:Catch::Matchers::Impl::StdString::Equals
+match	include/catch.hpp	/^            virtual bool match( std::string const& expr ) const {$/;"	f	struct:Catch::Matchers::Impl::StdString::StartsWith
+message	include/catch.hpp	/^        std::string message;$/;"	m	struct:Catch::AssertionResultData
+name	include/catch.hpp	/^    const char* name;$/;"	m	struct:Catch::NameAndDesc
+num_of_blocks	include/static_analyser.h	/^    int num_of_blocks; \/\/ 手牌中拥有的不同点数的数量$/;"	m	struct:skrobot::HandDescriptor
+op	include/catch.hpp	/^            std::string lhs, rhs, op;$/;"	m	struct:Catch::ResultBuilder::ExprComponents
+opCast	include/catch.hpp	/^    inline T& opCast(T const& t) { return const_cast<T&>(t); }$/;"	f	namespace:Catch::Internal
+opCast	include/catch.hpp	/^    inline std::nullptr_t opCast(std::nullptr_t) { return nullptr; }$/;"	f	namespace:Catch::Internal
+operator !	include/catch.hpp	/^        bool operator !() const { return m_p == CATCH_NULL; }$/;"	f	class:Catch::Ptr
+operator !	include/catch.hpp	/^    Generic::Not<ExpressionT> Matcher<ExpressionT>::operator ! () const {$/;"	f	class:Catch::Matchers::Impl::Matcher
+operator &&	include/catch.hpp	/^            AllOf operator && ( Matcher<ExpressionT> const& other ) const {$/;"	f	class:Catch::Matchers::Impl::Generic::AllOf
+operator &&	include/catch.hpp	/^    Generic::AllOf<ExpressionT> Matcher<ExpressionT>::operator && ( Matcher<ExpressionT> const& other ) const {$/;"	f	class:Catch::Matchers::Impl::Matcher
+operator *	include/catch.hpp	/^        T& operator*() const { return *m_p; }$/;"	f	class:Catch::Ptr
+operator +	include/catch.hpp	/^        std::string operator+() {$/;"	f	struct:Catch::StreamEndStop
+operator +	include/catch.hpp	/^    T const& operator + ( T const& value, StreamEndStop ) {$/;"	f	namespace:Catch
+operator ->	include/catch.hpp	/^        T* operator->() const { return m_p; }$/;"	f	class:Catch::Ptr
+operator <<	include/catch.hpp	/^        ResultBuilder& operator << ( T const& value ) {$/;"	f	class:Catch::ResultBuilder
+operator =	include/catch.hpp	/^        CopyableStream& operator=( CopyableStream const& other ) {$/;"	f	struct:Catch::CopyableStream
+operator =	include/catch.hpp	/^        Ptr& operator = ( Ptr const& other ){$/;"	f	class:Catch::Ptr
+operator =	include/catch.hpp	/^        Ptr& operator = ( T* p ){$/;"	f	class:Catch::Ptr
+operator SafeBool::type	include/catch.hpp	/^        operator SafeBool::type() const { return SafeBool::makeSafe( m_p != CATCH_NULL ); }$/;"	f	class:Catch::Ptr
+operator |	include/catch.hpp	/^    inline ResultDisposition::Flags operator | ( ResultDisposition::Flags lhs, ResultDisposition::Flags rhs ) {$/;"	f	namespace:Catch
+operator ||	include/catch.hpp	/^            AnyOf operator || ( Matcher<ExpressionT> const& other ) const {$/;"	f	class:Catch::Matchers::Impl::Generic::AnyOf
+operator ||	include/catch.hpp	/^    Generic::AnyOf<ExpressionT> Matcher<ExpressionT>::operator || ( Matcher<ExpressionT> const& other ) const {$/;"	f	class:Catch::Matchers::Impl::Matcher
+oss	include/catch.hpp	/^        std::ostringstream oss;$/;"	m	struct:Catch::CopyableStream
+performOptionalSelector	include/catch.hpp	/^inline id performOptionalSelector( id obj, SEL sel ) {$/;"	f
+pluralise	include/catch.hpp	/^    struct pluralise {$/;"	s	namespace:Catch
+rawMemoryToString	include/catch.hpp	/^    inline std::string rawMemoryToString( const T& object ) {$/;"	f	namespace:Catch::Detail
+reconstructedExpression	include/catch.hpp	/^        std::string reconstructedExpression;$/;"	m	struct:Catch::AssertionResultData
+release	include/catch.hpp	/^        virtual void release() const {$/;"	f	struct:Catch::SharedImpl
+reset	include/catch.hpp	/^        void reset() {$/;"	f	class:Catch::Ptr
+resultDisposition	include/catch.hpp	/^        ResultDisposition::Flags resultDisposition;$/;"	m	struct:Catch::AssertionInfo
+resultType	include/catch.hpp	/^        ResultWas::OfType resultType;$/;"	m	struct:Catch::AssertionResultData
+rhs	include/catch.hpp	/^            std::string lhs, rhs, op;$/;"	m	struct:Catch::ResultBuilder::ExprComponents
+s	include/catch.hpp	/^        static std::ostream &s;$/;"	m	struct:Catch::Detail::IsStreamInsertable
+shouldContinueOnFailure	include/catch.hpp	/^    inline bool shouldContinueOnFailure( int flags )    { return ( flags & ResultDisposition::ContinueOnFailure ) != 0; }$/;"	f	namespace:Catch
+shouldSuppressFailure	include/catch.hpp	/^    inline bool shouldSuppressFailure( int flags )      { return ( flags & ResultDisposition::SuppressFail ) != 0; }$/;"	f	namespace:Catch
+sizer	include/catch.hpp	/^    struct FalseType { char sizer[2]; };$/;"	m	struct:Catch::Detail::FalseType
+sizer	include/catch.hpp	/^    struct TrueType { char sizer[1]; };$/;"	m	struct:Catch::Detail::TrueType
+skrobot	include/common.h	/^namespace skrobot {$/;"	n
+skrobot	include/history_keeper.h	/^namespace skrobot {$/;"	n
+skrobot	include/static_analyser.h	/^namespace skrobot {$/;"	n
+skrobot	src/common.cc	/^namespace skrobot {$/;"	n	file:
+skrobot	src/history_keeper.cc	/^namespace skrobot {$/;"	n	file:
+skrobot	src/static_analyser.cc	/^namespace skrobot {$/;"	n	file:
+skrobot	test/test_common.cc	/^namespace skrobot {$/;"	n	file:
+skrobot	test/test_history_keeper.cc	/^namespace skrobot {$/;"	n	file:
+skrobot	test/test_static_analyser.cc	/^namespace skrobot {$/;"	n	file:
+start_value	include/static_analyser.h	/^    int start_value; \/\/一副手牌中最小的点数$/;"	m	struct:skrobot::HandDescriptor
+swap	include/catch.hpp	/^        void swap( Ptr& other ) { std::swap( m_p, other.m_p ); }$/;"	f	class:Catch::Ptr
+t	include/catch.hpp	/^        static T  const&t;$/;"	m	struct:Catch::Detail::IsStreamInsertable
+testFalse	include/catch.hpp	/^            bool testFalse;$/;"	m	struct:Catch::ResultBuilder::ExprComponents
+toString	include/catch.hpp	/^            virtual std::string toString() const {$/;"	f	class:Catch::Matchers::Impl::Generic::AllOf
+toString	include/catch.hpp	/^            virtual std::string toString() const {$/;"	f	class:Catch::Matchers::Impl::Generic::AnyOf
+toString	include/catch.hpp	/^            virtual std::string toString() const {$/;"	f	struct:Catch::Matchers::Impl::StdString::Contains
+toString	include/catch.hpp	/^            virtual std::string toString() const {$/;"	f	struct:Catch::Matchers::Impl::StdString::EndsWith
+toString	include/catch.hpp	/^            virtual std::string toString() const {$/;"	f	struct:Catch::Matchers::Impl::StdString::Equals
+toString	include/catch.hpp	/^            virtual std::string toString() const {$/;"	f	struct:Catch::Matchers::Impl::StdString::StartsWith
+toString	include/catch.hpp	/^std::string toString( std::vector<T,Allocator> const& v ) {$/;"	f	namespace:Catch
+toStringSuffix	include/catch.hpp	/^            std::string toStringSuffix() const$/;"	f	struct:Catch::Matchers::Impl::StdString::CasedString
+total_num	include/common.h	/^    int total_num;     \/\/ 司令总数$/;"	m	struct:skrobot::TrumpDescriptor
+trueValue	include/catch.hpp	/^        void trueValue() const {}$/;"	f	class:Catch::SafeBool
+trump_num	include/common.h	/^    int trump_num;      \/\/ 正司令数量$/;"	m	struct:skrobot::TrumpDescriptor
+value	include/catch.hpp	/^        enum { value = sizeof( testStreamable(s << t) ) == sizeof( TrueType ) };$/;"	e	enum:Catch::Detail::IsStreamInsertable::__anon1
+vice_trump_num	include/common.h	/^    int vice_trump_num; \/\/ 副司令数量$/;"	m	struct:skrobot::TrumpDescriptor
+~Matcher	include/catch.hpp	/^        virtual ~Matcher() {}$/;"	f	struct:Catch::Matchers::Impl::Matcher
+~MethodTestCase	include/catch.hpp	/^    virtual ~MethodTestCase() {}$/;"	f	class:Catch::MethodTestCase
+~Ptr	include/catch.hpp	/^        ~Ptr(){$/;"	f	class:Catch::Ptr
