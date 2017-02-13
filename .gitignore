@@ -1,5 +1,6 @@
 lib/*
 build
+obj
 
 # 忽略可执行文件
 bin/*
