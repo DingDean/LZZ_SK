@@ -523,18 +523,18 @@ TEST_CASE("OptionsXples从手牌中获取可以压制对手的对子或者三条
     }
 }
 
-TEST_CASE("OptionsXLinks 从手牌中获取所有可以压制对手的连牌", "[StaticAnalyserC, OptionsXLinks]") {
-    StaticAnalyserC target;
-    SECTION("获得所有的顺子") {
-        int hand[8] = {0x23,0x24,0x25,0x26,0x27,0x28,0x29,0x2A};
-        int link_start_card = 0x23;
-        int link_block_len  = 1;
-        int link_total_len  = 5;
-        iVector output_options;
-        target.OptionsXLinks(hand, 8, link_start_card, link_block_len, link_total_len, &output_options);
-        REQUIRE(output_options.size() == 18);
-    }
-}
+/*TEST_CASE("OptionsXLinks 从手牌中获取所有可以压制对手的连牌", "[StaticAnalyserC, OptionsXLinks]") {*/
+    /*StaticAnalyserC target;*/
+    /*SECTION("获得所有的顺子") {*/
+        /*int hand[8] = {0x23,0x24,0x25,0x26,0x27,0x28,0x29,0x2A};*/
+        /*int link_start_card = 0x23;*/
+        /*int link_block_len  = 1;*/
+        /*int link_total_len  = 5;*/
+        /*iVector output_options;*/
+        /*target.OptionsXLinks(hand, 8, link_start_card, link_block_len, link_total_len, &output_options);*/
+        /*REQUIRE(output_options.size() == 18);*/
+    /*}*/
+/*}*/
 
 TEST_CASE("MakeXplesWithTrump将司令和已有的组合整合在一起做出连牌", "[tags]") {
     StaticAnalyserC target;
