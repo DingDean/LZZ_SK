@@ -14,6 +14,8 @@ namespace skrobot {
 
     int GetCardLogicValue (int card)
     {
+        if (card == 0)
+            return 0;
         int color = GetCardColor(card);
         int value = GetCardValue(card);
 

@@ -286,7 +286,8 @@ void StaticAnalyserC::OptionsXples (int *hand, int len, int combo_card, int comb
     for (int i = 0; i< len;)
     {
         int current_logic_value = GetCardLogicValue(hand[i]);
-        int current_card_num    = NumCardByLogic(hand, len, GetCardLogicValue(hand[i]));
+        int current_card_num    = NumCardByLogic(hand, len, current_logic_value);
+
         if (current_logic_value <= combo_logic_value)
         {
             i+=current_card_num;
@@ -384,6 +385,25 @@ void StaticAnalyserC::FindBomb3TW (int *hand, int len, iVector *output_options)
             }
         }
     }
+}
+
+void StaticAnalyserC::FindNormalBomb (int *hand, int len, iVector *output_options)
+{
+    TrumpDescriptor trump_desc;
+    NumTrump(hand, len, &trump_desc);
+    SortByLogicValue(hand, len, true);
+
+    int trump_total = trump_desc.total_num;
+    int end = len - trump_total;
+
+    /*for (int i=0;i<end)*/
+    /*{*/
+        /*int current_logic_value = GetCardLogicValue(hand[i]);*/
+        /*int current_card_num    = NumCardByLogic(hand, len, current_logic_value);*/
+        /*if (current_card_num >= 4)*/
+        /*{*/
+        /*}*/
+    /*}*/
 }
 
 

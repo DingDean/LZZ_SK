@@ -59,6 +59,8 @@ class StaticAnalyserC {
         void OptionsBombs (int *hand, int len, int min_value, int min_len, int strategy, iVector *output_options);
         // 从手牌中找到三王炸和天王炸
         void FindBomb3TW (int *hand, int len, iVector *output_options);
+        // 从手牌中找到普通的炸弹
+        void FindNormalBomb (int *hand, int len, iVector *output_options);
         // TODO:逻辑+测试
         // 用司令来凑炸弹
         void MakeBombsWithTrump (int *hand, int len, int base_value_index, int base_num, int min_block_len, int max_block_len, TrumpDescriptor trump_desc, iVector *output_options);

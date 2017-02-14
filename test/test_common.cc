@@ -19,6 +19,7 @@ TEST_CASE("获得扑克的逻辑点数", "[comon, GetCardLogicValue]") {
     REQUIRE(GetCardLogicValue(0x23) == 0x03);
     REQUIRE(GetCardLogicValue(0x4E) == 0x10);
     REQUIRE(GetCardLogicValue(0x4F) == 0x11);
+    REQUIRE(GetCardLogicValue(0) == 0);
 }
 
 TEST_CASE("获取手牌中财神的数量", "[common, NumTrump]") {

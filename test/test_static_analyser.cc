@@ -512,6 +512,15 @@ TEST_CASE("OptionsXples从手牌中获取可以压制对手的对子或者三条
         target.OptionsXples(hand, 8, combo_card, combo_len, &output_options);
         REQUIRE(output_options.size() == 12);
     }
+
+    SECTION("能使用OptinonsXples找出手牌中所有的x张") {
+        int hand[9] = {0x23,0x23,0x24,0x24,0x25,0x25,0x25,0x4E};
+        int combo_card = 0;
+        int combo_len = 3;
+        iVector output_options;
+        target.OptionsXples(hand, 9, combo_card, combo_len, &output_options);
+        REQUIRE(output_options.size() == 16);
+    }
 }
 
 TEST_CASE("MakeXplesWithTrump将司令和已有的组合整合在一起做出连牌", "[tags]") {
@@ -683,7 +692,13 @@ TEST_CASE("FindBomb3TW 找到手牌中的三王炸", "[StaticAnalyserC, FindBomb
     }
 }
 
+TEST_CASE("FindNormalBomb 找到手牌中所有普通的炸弹i", "[StaticAnalyserC, FindNormalBomb]") {
+    StaticAnalyserC target;
 
+    SECTION("没有司令，") {
+        
+    }
+}
 
 //// TODO:
 //TEST_CASE("用司令来凑普通炸弹", "[StaticAnalyserC, MakeBombsWithTrump]") {
