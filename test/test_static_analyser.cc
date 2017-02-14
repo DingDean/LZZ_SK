@@ -259,34 +259,34 @@ TEST_CASE("检查一副手牌是否是天王炸", "[StaticAnalyserC, IsBombTW]")
 TEST_CASE("检查一副手牌是否是排炸", "[StaticAnalyserC, IsBombLink]") {
     StaticAnalyserC target;
 
-    SECTION("如果单个炸弹长度无法整除手牌长度，返回false") {
-        int input[9] = {0x21,0x21,0x21,0x21,0x22,0x22,0x22,0x22,0x23};
-        REQUIRE(target.IsBombLink(input, 9, 4) == false);
-    }
-
     SECTION("排炸必须至少是三连炸") {
         int input[8] = {0x21,0x21,0x21,0x21,0x22,0x22,0x22,0x22};
-        REQUIRE(target.IsBombLink(input, 8, 4) == false);
+        REQUIRE(target.IsBombLink(input, 8) == false);
     }
 
     SECTION("如果存在着一个点数的牌不成炸弹，返回false") {
         int input[12] = {0x21,0x21,0x21,0x21,0x22,0x22,0x22,0x23,0x24,0x24,0x24,0x24};
-        REQUIRE(target.IsBombLink(input, 12, 4) == false);
+        REQUIRE(target.IsBombLink(input, 12) == false);
     }
 
     SECTION("全是炸弹，但是点数不连续，返回false") {
         int input[12] = {0x21,0x21,0x21,0x21,0x23,0x23,0x23,0x23,0x24,0x24,0x24,0x24};
-        REQUIRE(target.IsBombLink(input, 12, 4) == false);
+        REQUIRE(target.IsBombLink(input, 12) == false);
     }
 
     SECTION("全是炸弹，且点数连续，没有财神，返回true") {
         int input[12] = {0x21,0x21,0x21,0x21,0x22,0x22,0x22,0x22,0x1D,0x1D,0x1D,0x1D};
-        REQUIRE(target.IsBombLink(input, 12, 4) == true);
+        REQUIRE(target.IsBombLink(input, 12) == true);
     }
 
     SECTION("全是炸弹，且点数连续，使用了财神") {
         int input[12] = {0x21,0x21,0x21,0x4E,0x22,0x22,0x22,0x22,0x1D,0x2D,0x3D,0x1D};
-        REQUIRE(target.IsBombLink(input, 12, 4) == true);
+        REQUIRE(target.IsBombLink(input, 12) == true);
+    }
+
+    SECTION("千变双扣中，炸弹的长度不一定相同") {
+        int input[13] = {0x21,0x21,0x21,0x21,0x4E,0x22,0x22,0x22,0x22,0x1D,0x2D,0x3D,0x1D};
+        REQUIRE(target.IsBombLink(input, 13) == true);
     }
 }
 
@@ -386,7 +386,7 @@ TEST_CASE("获取一组手牌的描述符", "[StaticAnalyserC, GenHandDescriptor
             REQUIRE(desc.hand_type      == kHandTypeBombLink);
             REQUIRE(desc.start_value    == GetCardLogicValue(0x1D));
             REQUIRE(desc.block_len      == 4);
-            REQUIRE(desc.num_of_blocks  == 3);
+            REQUIRE(desc.num_of_blocks  == 12);
         }
     }
 }
@@ -520,6 +520,19 @@ TEST_CASE("OptionsXples从手牌中获取可以压制对手的对子或者三条
         iVector output_options;
         target.OptionsXples(hand, 9, combo_card, combo_len, &output_options);
         REQUIRE(output_options.size() == 16);
+    }
+}
+
+TEST_CASE("OptionsXLinks 从手牌中获取所有可以压制对手的连牌", "[StaticAnalyserC, OptionsXLinks]") {
+    StaticAnalyserC target;
+    SECTION("获得所有的顺子") {
+        int hand[8] = {0x23,0x24,0x25,0x26,0x27,0x28,0x29,0x2A};
+        int link_start_card = 0x23;
+        int link_block_len  = 1;
+        int link_total_len  = 5;
+        iVector output_options;
+        target.OptionsXLinks(hand, 8, link_start_card, link_block_len, link_total_len, &output_options);
+        REQUIRE(output_options.size() == 18);
     }
 }
 
@@ -692,10 +705,38 @@ TEST_CASE("FindBomb3TW 找到手牌中的三王炸", "[StaticAnalyserC, FindBomb
     }
 }
 
-TEST_CASE("FindNormalBomb 找到手牌中所有普通的炸弹i", "[StaticAnalyserC, FindNormalBomb]") {
+TEST_CASE("FindNormalBomb 找到手牌中所有普通的炸弹", "[StaticAnalyserC, FindNormalBomb]") {
     StaticAnalyserC target;
 
-    SECTION("没有司令，") {
+    SECTION("有司令") {
+        int hand[8] = {0x23,0x23,0x23,0x24,0x24,0x24,0x24,0x4E};
+        iVector output_options;
+        target.FindNormalBomb(hand, 8, &output_options);
+        REQUIRE(output_options.size() == 21);
+    }
+
+    SECTION("没有司令") {
+        int hand[10] = {0x23,0x23,0x23,0x24,0x24,0x24,0x24,0x24,0x24,0x23};
+        iVector output_options;
+        target.FindNormalBomb(hand, 10, &output_options);
+        REQUIRE(output_options.size() == 23);
+    }
+}
+
+
+// TODO:2017-02-14
+// 完成测试
+TEST_CASE("FindBombLink 找到手牌中所有的排炸", "[StaticAnalyserC, FindBombLink]") {
+    StaticAnalyserC target;
+
+    SECTION("如果手牌中有一个点数的牌即使配合上所有的司令时都无法成炸弹的话，那肯定就没有排炸") {
+        int hand[8] = {0x23,0x4F,0x4E,0x24,0x24,0x24,0x24};
+        iVector output_options;
+        target.FindBombLink(hand, 8, &output_options);
+        REQUIRE(output_options.size() == 0);
+    }
+
+    SECTION("如果手牌中有") {
         
     }
 }

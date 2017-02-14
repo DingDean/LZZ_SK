@@ -164,7 +164,7 @@ bool StaticAnalyserC::IsBomb(int *hand, int len, bool is_sorted)
     for (int i = 0; i < len - 1; i++)
     {
         if (GetCardValue(hand[i]) != GetCardValue(hand[i+1]))
-            return this->IsBombLink(hand, len, i+1);
+            return this->IsBombLink(hand, len);
     }
     FillInDescriptor(kHandTypeBomb, hand[0], len, 1);
     return true;
@@ -196,14 +196,10 @@ bool StaticAnalyserC::IsBombTW(int *hand, int len)
     return true;
 }
 
-bool StaticAnalyserC::IsBombLink(int *hand, int len, int single_bomb_len)
+//TODO:完善排炸的描述符
+bool StaticAnalyserC::IsBombLink(int *hand, int len)
 {
-    if (len % single_bomb_len != 0)
-        return false;
-
-    const int factor = len / single_bomb_len;
-
-    if (factor < 3)
+    if (len < 12)
         return false;
 
     SortByLogicValue(hand, len, true);
@@ -216,9 +212,9 @@ bool StaticAnalyserC::IsBombLink(int *hand, int len, int single_bomb_len)
     int num_of_gap = NumberOfGap(distribution);
     int num_trump_needed = TrumpNeededForBomb(distribution);
 
-    if(num_of_gap*single_bomb_len + num_trump_needed == trump_num)
+    if(num_of_gap*4 + num_trump_needed <= trump_num)
     {
-        FillInDescriptor(kHandTypeBombLink, hand[0], single_bomb_len, factor);
+        FillInDescriptor(kHandTypeBombLink, hand[0], 4, len);
         return true;
     }
     return false;
@@ -389,34 +385,47 @@ void StaticAnalyserC::FindBomb3TW (int *hand, int len, iVector *output_options)
 
 void StaticAnalyserC::FindNormalBomb (int *hand, int len, iVector *output_options)
 {
+    for (int i=4; i<14; i++)
+    {
+        this->OptionsXples(hand, len, 0, i, output_options);
+    }
+}
+
+//TODO: 2017-02-15
+//完成寻找排炸的逻辑
+void StaticAnalyserC:: FindBombLink (int *hand, int len, iVector *output_options)
+{
+    SortByLogicValue(hand, len, true);
     TrumpDescriptor trump_desc;
     NumTrump(hand, len, &trump_desc);
-    SortByLogicValue(hand, len, true);
 
     int trump_total = trump_desc.total_num;
-    int end = len - trump_total;
+    int endOfNormalCards = len - trump_total;
 
-    /*for (int i=0;i<end)*/
-    /*{*/
-        /*int current_logic_value = GetCardLogicValue(hand[i]);*/
-        /*int current_card_num    = NumCardByLogic(hand, len, current_logic_value);*/
-        /*if (current_card_num >= 4)*/
-        /*{*/
-        /*}*/
-    /*}*/
+    for (int i=0;i<endOfNormalCards;i++)
+    {
+        int current_logic_value = GetCardLogicValue(hand[i]);
+        int current_card_num = NumCardByLogic(hand, len, current_logic_value);
+
+        if (current_card_num + trump_total < 4)
+        {
+            i+=current_card_num;
+            return;
+        }
+    }
 }
 
 
 //TODO:2017-02-14
 //完成逻辑
-bool StaticAnalyserC::OptionsXLinks (int *hand, int len, int link_start_value, int link_block_len, int link_total_len, iVector * output_options)
+bool StaticAnalyserC::OptionsXLinks (int *hand, int len, int link_start_card, int link_block_len, int link_total_len, iVector * output_options)
 {
-    int target_start_logic_value = GetCardLogicValue(link_start_value);
+    int target_start_logic_value = GetCardLogicValue(link_start_card);
     SortByLogicValue(hand, len, false);
     for (int i=0; i<len;)
     {
         int current_logic_value = GetCardLogicValue(hand[i]);
-        int current_value_num   = NumCardByValue(hand, len, GetCardValue(hand[i]));
+        int current_value_num   = NumCardByLogic(hand, len, current_logic_value);
         if (current_logic_value <= target_start_logic_value)
         {
             i += current_value_num;
@@ -452,7 +461,7 @@ bool StaticAnalyserC::React (int *hand, int len, int *out_hand)
     this->GenOptions(hand, len);
 }
 
-//TODO:2017-02-14
+//TODO:2017-02-15
 //完成逻辑
 bool StaticAnalyserC::GenOptions (int *hand, int len)
 {
@@ -580,7 +589,7 @@ bool StaticAnalyserC::FindCardsByValue(int *hand, int len, int card_value, int n
 }
 
 //TODO:2017-02-14
-//完成逻辑
+//测试
 void StaticAnalyserC::MakeBombsWithTrump(
         int *hand,
         int len,
@@ -676,7 +685,8 @@ int StaticAnalyserC::TrumpNeededForBomb(iVector *distribution)
     for (int i=0; i<size; i++)
     {
         int current_num = type_num[i];
-        num_trump_needed += max-current_num;
+        int trump_needed = 4 - current_num;
+        num_trump_needed += trump_needed > 0 ? trump_needed : 0;
     }
     return num_trump_needed;
 }
