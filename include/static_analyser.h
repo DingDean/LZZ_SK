@@ -49,17 +49,16 @@ class StaticAnalyserC {
 
         // 获得所有可以压制某张牌的散牌
         bool OptionsSingleCard (int *hand, int len, int input_card, iVector *output_options);
-        // TODO:逻辑＋测试
-        // 获得所有可以压制某对子的手牌组合
-        bool OptionsXples (int *hand, int len, int combo_card, int combo_len, iVector *output_options);
+        void OptionsXples (int *hand, int len, int combo_card, int combo_len, iVector *output_options);
         // TODO:逻辑＋测试
         // 获得所有可以压制某连的手牌组合
         bool OptionsXLinks (int *hand, int len, int link_start_value, int link_block_len, int link_total_len, iVector *output_options);
-        // TODO:逻辑+测试
         bool MakeXplesWithTrump (int base, int base_len, int trump_needed, TrumpDescriptor trump_desc, iVector *output_options);
         // TODO:逻辑+测试
         // 获得手牌中所有的炸弹
         void OptionsBombs (int *hand, int len, int min_value, int min_len, int strategy, iVector *output_options);
+        // 从手牌中找到三王炸和天王炸
+        void FindBomb3TW (int *hand, int len, iVector *output_options);
         // TODO:逻辑+测试
         // 用司令来凑炸弹
         void MakeBombsWithTrump (int *hand, int len, int base_value_index, int base_num, int min_block_len, int max_block_len, TrumpDescriptor trump_desc, iVector *output_options);

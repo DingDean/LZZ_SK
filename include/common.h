@@ -35,6 +35,8 @@ const int kMaskValue            = 0x0F; //牌值掩码
 //手牌信息
 const int kMaxHandLength        = 27;   //玩家起始手牌数量
 const int kDeckLength           = 108;  //游戏起始扑克数量
+const int kTrumpHead            = 0x4F; //正司令
+const int kTrumpVice            = 0x4E; //副司令
 
 // 获得一张牌的实际点数
 int GetCardValue(int card);
@@ -52,6 +54,7 @@ int NumTrump (int *hand, int len);
 void NumTrump (int *hand, int len, TrumpDescriptor *trump_desc);
 // 获得手牌中点数为value的扑克牌的数量
 int NumCardByValue (int *hand, int len, int value);
+// 获得手牌中逻辑点数为value的扑克牌的数量
 int NumCardByLogic (int *hand, int len, int value);
 
 } //namespace skrobot

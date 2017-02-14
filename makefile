@@ -6,7 +6,7 @@ SRC=src
 ODIR=obj
 BIN=bin
 
-CFLAGS=-I $(IDIR) -std=c++11
+CFLAGS=-g -I $(IDIR) -std=c++11
 
 TEST_OBJ=$(patsubst $(TEST_DIR)/%.cc, $(ODIR)/%.t, $(wildcard $(TEST_DIR)/*.cc))
 PROD_OBJ=$(patsubst $(SRC)/%.cc, $(ODIR)/%.o, $(wildcard $(SRC)/*.cc))
